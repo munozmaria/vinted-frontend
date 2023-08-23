@@ -62,7 +62,7 @@ header .container>div:last-child button {
 
 /* ================================================================= HERO =================================================================*/
 
-.hero{
+.hero {
   background-image: url(./assets/img/hero.jpg);
   background-position: 50%;
   background-size: cover;
@@ -71,12 +71,12 @@ header .container>div:last-child button {
   width: 100%;
 }
 
-.hero>div{
+.hero>div {
   margin: auto;
   width: 1280px;
 }
 
-.hero-ready{
+.hero-ready {
   background-color: white;
   color: black;
   position: absolute;
@@ -84,24 +84,63 @@ header .container>div:last-child button {
   padding: 25px;
   width: 360px;
   border-radius: 3px;
-  box-shadow: 0 0 2px hsla(0,0%,7%,.24);
+  box-shadow: 0 0 2px hsla(0, 0%, 7%, .24);
   height: 220px;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
- 
+
 
 }
 
-.hero-ready p{
+.hero-ready p {
   font-size: 34px;
 }
 
-.hero-ready button{
+.hero-ready button {
   background-color: var(--blue);
   padding: 10px 20px;
   border-radius: 5px;
   color: white;
   border: 1px solid var(--blue);
   font-weight: bold;
+  font-size: 16px;
 }
+
+/* ================================================================= OFFERS =================================================================*/
+
+main {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 30px auto auto;
+  gap:20px;
+  list-style: none;
+
+
+}
+
+
+
+
+article {
+  cursor: pointer;
+  padding: 10px 5px 6px 16px;
+  width: 235px;
+
+
+}
+
+article img {
+  height: 360px;
+  object-fit: cover;
+  width: 235px;
+}
+
+
+/*================================ SELECTED OFFREE =================================================================*/
+
+.offre{
+  display: flex;
+  justify-content: center;
+}
+
