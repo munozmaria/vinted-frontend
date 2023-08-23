@@ -1,0 +1,107 @@
+:root {
+  --blue: #2baeb7
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.container {
+  width: 1285px;
+  margin: 0 auto;
+
+  text-align: center;
+}
+
+
+
+/* =================================================================HEADER =================================================================*/
+
+header {
+  background-color: aliceblue;
+  padding: 2rem;
+
+}
+
+header>div {
+  display: flex;
+  justify-content: space-between;
+}
+
+header img {
+  object-fit: cover;
+  width: 100px;
+}
+
+
+header .container>div:nth-child(3) {
+  display: flex;
+
+  align-items: start;
+  gap: 20px;
+
+}
+
+
+header .container>div:nth-child(3) button {
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: 1px solid var(--blue);
+}
+
+header .container>div:last-child button {
+  background-color: var(--blue);
+  padding: 10px 20px;
+  border-radius: 5px;
+  color: white;
+  border: 1px solid var(--blue);
+  font-weight: bold;
+}
+
+
+
+/* ================================================================= HERO =================================================================*/
+
+.hero{
+  background-image: url(./assets/img/hero.jpg);
+  background-position: 50%;
+  background-size: cover;
+  height: 455px;
+  position: relative;
+  width: 100%;
+}
+
+.hero>div{
+  margin: auto;
+  width: 1280px;
+}
+
+.hero-ready{
+  background-color: white;
+  color: black;
+  position: absolute;
+  top: 20%;
+  padding: 25px;
+  width: 360px;
+  border-radius: 3px;
+  box-shadow: 0 0 2px hsla(0,0%,7%,.24);
+  height: 220px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+ 
+
+}
+
+.hero-ready p{
+  font-size: 34px;
+}
+
+.hero-ready button{
+  background-color: var(--blue);
+  padding: 10px 20px;
+  border-radius: 5px;
+  color: white;
+  border: 1px solid var(--blue);
+  font-weight: bold;
+}
