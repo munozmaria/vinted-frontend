@@ -1,43 +1,68 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import { useState } from "react";
+import Cookies from "js-cookie";
 library.add(faEye, faEyeSlash);
 
 const Login = () => {
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [hashPassword, setHashPassword] = useState(true);
-  const [confirmHashPassword, setConfirmHashPassword] = useState(true);
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [identiques, setIdentiques] = useState(true);
+
+  //console.log(token);
+
+  const navigate = useNavigate();
+
+  const fetchData = async () => {
+    try {
+      const response = await axios.post(
+        `https://lereacteur-vinted-api.herokuapp.com/user/login`,
+        {
+          email: email,
+          password: password,
+        }
+      );
+      //console.log(response.data);
+      const token = response.data.token;
+      Cookies.set("token", token);
+      navigate("/");
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  //console.log(tokenLogin)
 
   const handleLogin = (event) => {
     event.preventDefault();
 
-    if (
-      password !== confirmPassword ||
-      password === "" ||
-      confirmPassword === ""
-    ) {
-      setIdentiques(!identiques);
-    } else {
-      alert("puedes");
-    }
+    fetchData();
   };
 
   return (
     <>
-      <div className="formSignup">
+      <div className="formulaire">
         <div className="formContainer">
           <form onSubmit={handleLogin}>
             <h1>Se connecter</h1>
 
-            <input id="email" type="email" placeholder="Email" name="email" />
+            <input
+              id="email"
+              type="email"
+              placeholder="Email"
+              name="email"
+              value={email}
+              onChange={(event) => {
+                setEmail(event.target.value);
+              }}
+            />
 
             <div className="passwordInput">
               <input
                 id="password"
-                className={identiques ? "" : "wrong"}
                 type={hashPassword ? "password" : "text"}
                 value={password}
                 placeholder="Mot de passe"
@@ -54,32 +79,6 @@ const Login = () => {
                 }}
               />
             </div>
-
-            <div className="passwordInput">
-              <input
-                id="confirmPassword"
-                className={identiques ? "" : "wrong"}
-                type={confirmHashPassword ? "password" : "text"}
-                value={confirmPassword}
-                placeholder="Confirmez mot de passe"
-                name="password"
-                onChange={(event) => {
-                  setConfirmPassword(event.target.value);
-                }}
-              />
-              <FontAwesomeIcon
-                className="eyeIcon"
-                icon={confirmHashPassword ? "eye" : "eye-slash"}
-                onClick={() => {
-                  setConfirmHashPassword(!confirmHashPassword);
-                }}
-              />
-            </div>
-            {identiques === false && (
-              <span style={{ color: "red" }}>
-                Les mots de passe ne sont pas indentiques
-              </span>
-            )}
 
             <button type="submit">Se connecter</button>
             <p>Pas encore de compte? Inscris-toi!</p>

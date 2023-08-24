@@ -38,8 +38,8 @@ const Signup = () => {
       const response = await axios.post(
         `https://lereacteur-vinted-api.herokuapp.com/user/signup`,
         {
-          username: name,
-          email: email,
+            email: email,
+            username: name,
           password: password,
           newsletter: checkNewsletter,
         }
@@ -54,7 +54,7 @@ const Signup = () => {
   };
 
   return (
-    <div className="formSignup">
+    <div className="formulaire">
       <div className="formContainer">
         <form
           onSubmit={(event) => {
