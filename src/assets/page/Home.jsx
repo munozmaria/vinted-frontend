@@ -7,38 +7,32 @@ const Home = () => {
   const [data, setData] = useState({});
   const [isLoading, setIsLoading] = useState(true);
 
-  // const [offerSelected, setOfferSelected] = useState([]);
-
-  const fetchData = async () => {
-    const response = await axios.get(
-      "https://lereacteur-vinted-api.herokuapp.com/offers"
-    );
-    //console.log(response.data);
-    setData(response.data);
-    setIsLoading(false);
-  };
 
   useEffect(() => {
-    fetchData();
+  
+      const fetchData = async () => {
+        try {
+        const response = await axios.get(
+          `https://lereacteur-vinted-api.herokuapp.com/offers`
+        );
+        // console.log(response.data);
+        setData(response.data);
+        setIsLoading(false);
+        //console.log(data);
+    
+    } catch (err) {
+      console.log(err);
+    }
+  }
+      fetchData();
+  
+   
   }, []);
 
-  // const handleOffer = (offer) => {
-  //   //console.log(offer)
-  //   const offersCopy = [...offerSelected];
-  //   const offerPresent = offersCopy.find((elem) => elem.id === offer.id);
-  //   if (offerPresent) {
-  //     offerPresent.quantity++;
-  //   } else {
-  //     const obj = { ...offer, quantity: 1 };
-  //     offersCopy.push(obj);
-  //   }
-  //   setOfferSelected(offersCopy);
 
-  // //console.log(offers)
-  // };
 
   return isLoading ? (
-    <span>En cours de chargement... </span>
+    <span>Loading... </span>
   ) : (
     <>
       <Hero />
@@ -52,14 +46,24 @@ const Home = () => {
                >
                 <article>
                   <div>
-                    <p>{offer.owner.account.username}</p>
+                    {offer.owner.account.avatar && <img className="avatar" src={offer.owner.account.avatar.secure_url} alt={offer.owner.account.username}/> } 
+                    <span>{offer.owner.account.username}</span>
                   </div>
                   <div>
-                    <img src={offer.product_image.url} alt="" />
+                    <img src={offer.product_image.secure_url} alt={offer.product_name} />
                   </div>
                   <div>
                     <p>{offer.product_price}€</p>
                     <p>{offer.product_name}</p>
+                    {offer.product_details.map((detail, index)=>{
+                          if(detail.MARQUE){
+                            return <p key={index}>{detail.MARQUE}</p>
+                          } else if(detail.TAILLE){
+                            return <p key={index}>{detail.TAILLE}</p>
+                          }else{
+                            return null
+                          }
+                    })}
                   </div>
                 </article>
               </Link>
