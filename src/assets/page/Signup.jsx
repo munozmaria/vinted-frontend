@@ -1,5 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
+import Cookies from "js-cookie";
+import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
@@ -12,12 +14,12 @@ const Signup = () => {
   const [hashPassword, setHashPassword] = useState(true);
   const [confirmHashPassword, setConfirmHashPassword] = useState(true);
   const [confirmPassword, setConfirmPassword] = useState("");
-
   const [checkNewsletter, setNewsletter] = useState(false);
-
   const [identiques, setIdentiques] = useState(true);
 
-  const handleSubmit = (event) => {
+  const navigate = useNavigate();
+
+  const handleSignup = (event) => {
     event.preventDefault();
 
     if (
@@ -39,11 +41,13 @@ const Signup = () => {
           username: name,
           email: email,
           password: password,
-          newsletter: checkNewsletter
-         
+          newsletter: checkNewsletter,
         }
       );
-      console.log(response.data);
+      //console.log(response.data);
+      const token = response.data.token;
+      //console.log(token);
+      Cookies.set("token", token, { expires: 7 });
     } catch (err) {
       console.log(err);
     }
@@ -52,7 +56,11 @@ const Signup = () => {
   return (
     <div className="formSignup">
       <div className="formContainer">
-        <form onSubmit={handleSubmit}>
+        <form
+          onSubmit={(event) => {
+            handleSignup(event);
+            navigate("/login");
+          }}>
           <h1>S'inscrire</h1>
 
           <input
@@ -83,7 +91,7 @@ const Signup = () => {
               className={identiques ? "" : "wrong"}
               type={hashPassword ? "password" : "text"}
               value={password}
-              placeholder="Mot de passe"
+              placeholder="Confirmez mot de passe"
               name="password"
               onChange={(event) => {
                 setPassword(event.target.value);
@@ -123,11 +131,17 @@ const Signup = () => {
               Les mots de passe ne sont pas indentiques
             </span>
           )}
-          <div className="checkbox-container" onChange={(event)=>{
-            setNewsletter(event.target.checked)
-          }}>
+          <div
+            className="checkbox-container"
+            onChange={(event) => {
+              setNewsletter(event.target.checked);
+            }}>
             <div>
-              <input type="checkbox" className="check" value={checkNewsletter} />
+              <input
+                type="checkbox"
+                className="check"
+                value={checkNewsletter}
+              />
               <span>S'inscrire à notre newsletter</span>
             </div>
 
