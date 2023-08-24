@@ -113,7 +113,7 @@ main {
   display: flex;
   flex-wrap: wrap;
   margin: 30px auto auto;
-  gap:20px;
+  gap: 20px;
   list-style: none;
 
 
@@ -131,11 +131,11 @@ article {
 }
 
 
-.avatar{
+.avatar {
   width: 30px;
   height: 30px;
   border-radius: 50%;
-} 
+}
 
 article img {
   height: 360px;
@@ -146,8 +146,119 @@ article img {
 
 /*================================ SELECTED OFFREE =================================================================*/
 
-.offre{
+.offre {
   display: flex;
   justify-content: center;
 }
 
+
+
+/*================================ SIGNUP =================================================================*/
+
+
+.formSignup {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+
+}
+
+.formContainer {
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+
+
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 320px;
+
+}
+
+form button {
+  margin-top: 25px;
+  background-color: var(--blue);
+  padding: 10px 20px;
+  border-radius: 5px;
+  color: white;
+  border: 1px solid var(--blue);
+  font-weight: bold;
+  font-size: 16px;
+
+}
+
+form input {
+  padding: 20px;
+
+  border-radius: 5px;
+  width: 100%;
+  outline: 0;
+  border-width: 0 0 2px;
+  border-color: rgb(164, 164, 181)
+}
+
+
+form input:focus {
+  border: 2px solid rgb(192, 167, 241);
+  outline: none;
+}
+
+
+.wrong {
+  border: 1px solid rgb(244, 24, 24);
+}
+
+.passwordInput {
+  position: relative;
+
+}
+
+
+.eyeIcon {
+  position: absolute;
+  top: 30%;
+  font-size: 20px;
+  right: 10px;
+}
+
+form p {
+  color: var(--blue);
+
+  text-align: center;
+  margin-top: 10px;
+}
+
+form h1 {
+  text-align: center;
+  font-size: 25px;
+  letter-spacing: 2px;
+  margin-bottom: 20px;
+}
+
+.checkbox-container {
+  margin-top: 20px;
+
+}
+
+.checkbox-container>p {
+  color: #999;
+  font-size: 14px;
+  text-align: left;
+}
+
+.checkbox-container span {
+  color: #666;
+}
+
+.checkbox-container .check {
+  margin-right: 20px;
+  -webkit-transform: scale(2);
+  transform: scale(2);
+  width: 5%;
+}
