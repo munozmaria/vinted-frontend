@@ -4,10 +4,10 @@ import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useState } from "react";
-import Cookies from "js-cookie";
+
 library.add(faEye, faEyeSlash);
 
-const Login = () => {
+const Login = ({ handleToken }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [hashPassword, setHashPassword] = useState(true);
@@ -21,13 +21,13 @@ const Login = () => {
       const response = await axios.post(
         `https://lereacteur-vinted-api.herokuapp.com/user/login`,
         {
-          email: email,
-          password: password,
+          email,
+          password,
         }
       );
       //console.log(response.data);
-      const token = response.data.token;
-      Cookies.set("token", token);
+
+      handleToken(response.data.token);
       navigate("/");
     } catch (err) {
       console.log(err);

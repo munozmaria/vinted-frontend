@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import Hero from "../../components/Hero";
 
+
 const Home = () => {
   const [data, setData] = useState({});
   const [isLoading, setIsLoading] = useState(true);

@@ -1,13 +1,13 @@
 import { useState } from "react";
 import axios from "axios";
-import Cookies from "js-cookie";
-import { useNavigate } from "react-router-dom";
+
+import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 library.add(faEye, faEyeSlash);
 
-const Signup = () => {
+const Signup = ({ handleToken }) => {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
@@ -16,6 +16,8 @@ const Signup = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [checkNewsletter, setNewsletter] = useState(false);
   const [identiques, setIdentiques] = useState(true);
+
+  const [errorMessage, setErrorMessage] = useState("");
 
   const navigate = useNavigate();
 
@@ -29,27 +31,40 @@ const Signup = () => {
     ) {
       setIdentiques(!identiques);
     } else {
+      
       fetchData();
     }
   };
 
   const fetchData = async () => {
     try {
+      setErrorMessage("");
       const response = await axios.post(
         `https://lereacteur-vinted-api.herokuapp.com/user/signup`,
         {
-            email: email,
-            username: name,
+          email: email,
+          username: name,
           password: password,
           newsletter: checkNewsletter,
         }
       );
       //console.log(response.data);
-      const token = response.data.token;
+
       //console.log(token);
-      Cookies.set("token", token, { expires: 7 });
-    } catch (err) {
-      console.log(err);
+      handleToken(response.data.token);
+      navigate("/");
+    } catch (error) {
+      if (
+        error.response.data.message ===
+        "This email already has an account"
+      ) {
+        // Je met à jour mon state errorMessage
+        setErrorMessage(
+          "Ce mail est déjà utilisé, veuillez en choisir un autre :)"
+        );
+      } else if (error.response.data.message === "Missing parameters") {
+        setErrorMessage("Veuillez remplir tous les champs :)");
+      }
     }
   };
 
@@ -59,7 +74,6 @@ const Signup = () => {
         <form
           onSubmit={(event) => {
             handleSignup(event);
-            navigate("/login");
           }}>
           <h1>S'inscrire</h1>
 
@@ -91,7 +105,7 @@ const Signup = () => {
               className={identiques ? "" : "wrong"}
               type={hashPassword ? "password" : "text"}
               value={password}
-              placeholder="Confirmez mot de passe"
+              placeholder="Mot de passe"
               name="password"
               onChange={(event) => {
                 setPassword(event.target.value);
@@ -112,7 +126,7 @@ const Signup = () => {
               className={identiques ? "" : "wrong"}
               type={confirmHashPassword ? "password" : "text"}
               value={confirmPassword}
-              placeholder="Mot de passe"
+              placeholder="Confirmez mot de passe"
               name="password"
               onChange={(event) => {
                 setConfirmPassword(event.target.value);
@@ -153,7 +167,8 @@ const Signup = () => {
           </div>
 
           <button type="submit">S'inscrire</button>
-          <p>Tu as déjà un compte ? Connecte-toi !</p>
+          {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
+          <Link to="/login">Tu as déjà un compte ? Connectes-toi !</Link>
         </form>
       </div>
     </div>
