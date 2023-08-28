@@ -15,6 +15,7 @@ function App() {
   const [token, setToken] = useState(Cookies.get("token") || null);
   const [rangePriceOffers, setRangePriceOffers] = useState([0, 10000]);
   const [search, setSearch] = useState("");
+  const[sortedPrice, setSortedPrice] = useState("price-asc")
 
   const handleToken = (token) => {
     if (token) {
@@ -26,6 +27,9 @@ function App() {
     }
   };
 
+
+
+
   return (
     <Router>
       <Header
@@ -33,13 +37,15 @@ function App() {
         handleToken={handleToken}
         search={search}
         setSearch={setSearch}
+        setSortedPrice={setSortedPrice}
+        sortedPrice={sortedPrice}
         setRangePriceOffers={setRangePriceOffers}
         rangePriceOffers={rangePriceOffers}
       />
       <Routes>
         <Route
           path="/"
-          element={<Home rangePriceOffers={rangePriceOffers} search={search} />}
+          element={<Home rangePriceOffers={rangePriceOffers} search={search} sortedPrice={sortedPrice} />}
         />
         <Route path="/offer/:id" element={<Offer />} />
         <Route

@@ -9,6 +9,7 @@ import {
   faEyeSlash,
 } from "@fortawesome/free-solid-svg-icons";
 import RangeRate from "./RangeRate";
+import SwitchPrice from "./SwitchPrice";
 
 library.add(faEye, faEyeSlash, faMagnifyingGlass);
 
@@ -18,6 +19,8 @@ const Header = ({
   search,
   setSearch,
   setRangePriceOffers,
+  setSortedPrice,
+  sortedPrice
 }) => {
   const navigate = useNavigate();
 
@@ -44,6 +47,7 @@ const Header = ({
           />
 
           <div>
+            <SwitchPrice setSortedPrice={setSortedPrice} sortedPrice={sortedPrice}></SwitchPrice>
             <RangeRate setRangePriceOffers={setRangePriceOffers}></RangeRate>
           </div>
         </div>

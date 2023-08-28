@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import Hero from "../../components/Hero";
 
-const Home = ({ search, rangePriceOffers }) => {
+const Home = ({ search, rangePriceOffers, sortedPrice }) => {
   const [data, setData] = useState({});
   const [isLoading, setIsLoading] = useState(true);
 
@@ -11,7 +11,9 @@ const Home = ({ search, rangePriceOffers }) => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `https://lereacteur-vinted-api.herokuapp.com/offers?title=${search}&priceMin=${rangePriceOffers[0]}&priceMax=${rangePriceOffers[1]}`
+          `https://lereacteur-vinted-api.herokuapp.com/offers?title=${search}&priceMin=${rangePriceOffers[0]}&priceMax=${rangePriceOffers[1]}&sort=${
+            !sortedPrice ? "price-desc" : "price-asc"
+          }`
         );
         // console.log(response.data);
         setData(response.data);
@@ -22,7 +24,7 @@ const Home = ({ search, rangePriceOffers }) => {
       }
     };
     fetchData();
-  }, [search, rangePriceOffers]);
+  }, [search, rangePriceOffers, sortedPrice]);
 
   return isLoading ? (
     <span>Loading... </span>

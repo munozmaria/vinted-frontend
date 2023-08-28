@@ -92,7 +92,43 @@ header .container>div:last-child button {
 
 }
 
+.recherche>div {
+  display: flex;
+  gap: 20px;
+  justify-content: space-evenly;
+  align-items: center;
 
+}
+
+.recherche>div label {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.react-switch-bg {
+  background-color: var(--blue) !important;
+}
+
+.react-switch-bg svg path {
+
+  fill: var(--blue);
+}
+
+.react-switch-handle::after {
+  content: "⇡";
+  left: 8px;
+  position: absolute;
+  top: 5px;
+}
+
+
+.react-switch-handle::before {
+  content: "⇣";
+  left: 8px;
+  position: absolute;
+  top: 5px;
+}
 
 /* ================================================================= HERO =================================================================*/
 
