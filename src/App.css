@@ -31,6 +31,7 @@ header>div {
 header img {
   object-fit: cover;
   width: 100px;
+  cursor: pointer;
 }
 
 
@@ -39,6 +40,7 @@ header .container>div:nth-child(3) {
 
   align-items: start;
   gap: 20px;
+
 
 }
 
@@ -133,6 +135,7 @@ header .container>div:last-child button {
   border: 1px solid var(--blue);
   font-weight: bold;
   font-size: 16px;
+  cursor: pointer;
 }
 
 /* ================================================================= OFFERS =================================================================*/
@@ -320,6 +323,7 @@ article img {
   box-shadow: 0 0 2px gray;
   margin-bottom: 20px;
   border: 1px solid var(--blue);
+  border-radius: 5px;
 }
 
  .selectPicture{
@@ -332,11 +336,17 @@ article img {
   cursor: pointer;
   justify-content: center;
   width: 200px;
+ 
+  transition: all .2s ease-in-out;
+}
+
+.selectPicture:hover{
+  transform: scale(1.1);
 }
 
 .label-file{
   color: #2CB1BA;
-  
+  cursor: pointer;
   font-weight: 700;
   
 }
@@ -365,7 +375,7 @@ article img {
   box-shadow: 0 0 2px gray;
   margin-bottom: 20px;
   border: 1px solid var(--blue);
-  
+  border-radius: 5px;
 }
 
 .text-input-section>div:first-child{
@@ -466,4 +476,10 @@ border-bottom: 1px solid #ebedee;
   font: inherit;
   outline: inherit;
   padding: 12px;
+  cursor: pointer;
+  transition: all .2s ease-in-out;
+}
+
+.button-form-validation:hover{
+  transform: scale(1.1);
 }

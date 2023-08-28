@@ -37,7 +37,6 @@ const Publish = ({ token }) => {
       formData.append("city", city);
       formData.append("brand", brand);
 
-
       const response = await axios.post(
         " https://lereacteur-vinted-api.herokuapp.com/offer/publish",
         formData,
@@ -50,7 +49,6 @@ const Publish = ({ token }) => {
       );
       setImgFromCloudinary(response.data.product_image.secure_url);
       if (response.data._id) {
-        // redirectoin vers l'offre
         navigate(`/offer/${response.data._id}`);
       } else {
         alert("Une erreur est survenue, veuillez réssayer");

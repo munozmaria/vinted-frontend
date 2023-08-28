@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/img/logo.jpg";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -16,6 +16,8 @@ const Header = ({ token, handleToken }) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const url = `https://lereacteur-vinted-api.herokuapp.com/offers`;
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -37,7 +39,9 @@ const Header = ({ token, handleToken }) => {
   ) : (
     <header>
       <div className="container">
-        <img src={logo} alt="" />
+        <img   src={logo} alt="" onClick={() => {
+          navigate("/");
+        }}/>
 
         <div className="recherche">
           <FontAwesomeIcon className="magnifyGlass" icon={faMagnifyingGlass} />
