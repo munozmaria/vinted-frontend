@@ -18,7 +18,7 @@
 /* =================================================================HEADER =================================================================*/
 
 header {
-  
+
   padding: 2rem;
 
 }
@@ -69,8 +69,9 @@ header .container>div:last-child button {
 .recherche {
   position: relative;
 }
-.recherche input{
- 
+
+.recherche input {
+
   background-color: #f5f6f7;
   border: none;
   border-radius: 5px;
@@ -80,15 +81,18 @@ header .container>div:last-child button {
   outline: none;
   padding-left: 40px;
   width: 590px;
+  margin-bottom: 35px;
 }
 
-.magnifyGlass{
+.magnifyGlass {
   position: absolute;
   top: 10px;
   color: #bbb;
-    left: 7px;
- 
+  left: 7px;
+
 }
+
+
 
 /* ================================================================= HERO =================================================================*/
 
@@ -301,21 +305,21 @@ article img {
 
 /*================================ PUBLISH =================================================================*/
 
-.publish{
+.publish {
   width: 1284px;
   margin: 0 auto;
 
 }
 
-.publish h2{
+.publish h2 {
   font-size: 24px;
   margin-bottom: 26px;
 }
 
-.picture-section{
+.picture-section {
   display: flex;
   justify-content: center;
- 
+
   align-items: center;
   height: 250px;
   width: 100%;
@@ -326,7 +330,7 @@ article img {
   border-radius: 5px;
 }
 
- .selectPicture{
+.selectPicture {
 
   align-items: center;
   border: 1px solid var(--blue);
@@ -336,40 +340,40 @@ article img {
   cursor: pointer;
   justify-content: center;
   width: 200px;
- 
+
   transition: all .2s ease-in-out;
 }
 
-.selectPicture:hover{
+.selectPicture:hover {
   transform: scale(1.1);
 }
 
-.label-file{
+.label-file {
   color: #2CB1BA;
   cursor: pointer;
   font-weight: 700;
-  
+
 }
 
-.label-file > .fa-plus{
+.label-file>.fa-plus {
   font-size: 30px;
   margin: 0 10px;
   vertical-align: middle;
- 
+
 }
 
-.label-file > span{
+.label-file>span {
 
   margin: 0 10px;
   vertical-align: middle;
 }
 
-.input-file{
- display: none;
+.input-file {
+  display: none;
 }
 
 
-.text-input-section{
+.text-input-section {
 
   background-color: #fff;
   box-shadow: 0 0 2px gray;
@@ -378,38 +382,42 @@ article img {
   border-radius: 5px;
 }
 
-.text-input-section>div:first-child{
+.text-input-section>div:first-child {
 
-border-bottom: 1px solid #ebedee;
+  border-bottom: 1px solid #ebedee;
   vertical-align: center;
 
 
 }
 
-.text-input>input::placeholder, .text-input>textarea::placeholder, .checkbox-section>input::placeholder{
-  color:rgb(157, 150, 152)
+.text-input>input::placeholder,
+.text-input>textarea::placeholder,
+.checkbox-section>input::placeholder {
+  color: rgb(157, 150, 152)
 }
 
-.text-input{
+.text-input {
   display: flex;
-    justify-content: space-between;
-    padding: 24px;
-    
+  justify-content: space-between;
+  padding: 24px;
+
 
 }
 
-.text-input>input:focus, .text-input>textarea:focus, .checkbox-section>input:focus{
-  
-    border-bottom: 1px solid var(--blue);
-    outline: none;
+.text-input>input:focus,
+.text-input>textarea:focus,
+.checkbox-section>input:focus {
 
-  
+  border-bottom: 1px solid var(--blue);
+  outline: none;
+
+
 }
 
-.text-input>h4{
+.text-input>h4 {
   font-weight: 400;
-    margin: 0;
-    vertical-align: initial;
+  margin: 0;
+  vertical-align: initial;
 }
 
 
@@ -447,22 +455,22 @@ border-bottom: 1px solid #ebedee;
   margin-bottom: 40px;
 }
 
-.checkbox-input{
+.checkbox-input {
   display: flex;
   align-items: center;
 }
 
 .check-input {
-  width: 30px; 
+  width: 30px;
   height: 30px;
   border-radius: 3px;
   margin: 0 15px 0 0;
   padding: 3px 6px;
   cursor: pointer;
-  
+
 }
 
-.submit-button-div{
+.submit-button-div {
   display: flex;
   justify-content: flex-end;
 }
@@ -480,6 +488,6 @@ border-bottom: 1px solid #ebedee;
   transition: all .2s ease-in-out;
 }
 
-.button-form-validation:hover{
+.button-form-validation:hover {
   transform: scale(1.1);
 }

@@ -8,10 +8,17 @@ import {
   faMagnifyingGlass,
   faEyeSlash,
 } from "@fortawesome/free-solid-svg-icons";
+import RangeRate from "./RangeRate";
 
 library.add(faEye, faEyeSlash, faMagnifyingGlass);
 
-const Header = ({ token, handleToken, search, setSearch }) => {
+const Header = ({
+  token,
+  handleToken,
+  search,
+  setSearch,
+  setRangePriceOffers,
+}) => {
   const navigate = useNavigate();
 
   return (
@@ -36,13 +43,9 @@ const Header = ({ token, handleToken, search, setSearch }) => {
             }}
           />
 
-            <div>
-              <span></span>
-              <span></span>
-              <div></div>
-            </div>
-
-
+          <div>
+            <RangeRate setRangePriceOffers={setRangePriceOffers}></RangeRate>
+          </div>
         </div>
 
         {!token ? (
