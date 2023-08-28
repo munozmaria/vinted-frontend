@@ -12,8 +12,6 @@ const Login = ({ handleToken }) => {
   const [password, setPassword] = useState("");
   const [hashPassword, setHashPassword] = useState(true);
 
-  //console.log(token);
-
   const navigate = useNavigate();
 
   const fetchData = async () => {
@@ -28,13 +26,16 @@ const Login = ({ handleToken }) => {
       //console.log(response.data);
 
       handleToken(response.data.token);
-      navigate("/");
+
+      if (response.data.token) {
+        navigate("/publish");
+      } else {
+        alert("Une erreur est survenue, veuillez réssayer.");
+      }
     } catch (err) {
       console.log(err);
     }
   };
-
-  //console.log(tokenLogin)
 
   const handleLogin = (event) => {
     event.preventDefault();

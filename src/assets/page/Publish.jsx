@@ -3,11 +3,11 @@ import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 
 library.add(faPlus);
 
-const Publish = ({token}) => {
+const Publish = ({ token }) => {
   const [picture, setPicture] = useState();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -20,16 +20,24 @@ const Publish = ({token}) => {
   const [exchange, setExchange] = useState(false);
   const [imgFromCloudinary, setImgFromCloudinary] = useState("");
 
-  
+  const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
       const formData = new FormData();
- 
+
       formData.append("picture", picture);
       formData.append("title", title);
       formData.append("price", price);
+      formData.append("description", description);
+      formData.append("size", size);
+      formData.append("color", color);
+      formData.append("condition", condition);
+      formData.append("city", city);
+      formData.append("brand", brand);
+
+
       const response = await axios.post(
         " https://lereacteur-vinted-api.herokuapp.com/offer/publish",
         formData,
@@ -41,13 +49,19 @@ const Publish = ({token}) => {
         }
       );
       setImgFromCloudinary(response.data.product_image.secure_url);
+      if (response.data._id) {
+        // redirectoin vers l'offre
+        navigate(`/offer/${response.data._id}`);
+      } else {
+        alert("Une erreur est survenue, veuillez réssayer");
+      }
       console.log(response.data);
     } catch (error) {
       console.log(error.response);
     }
   };
 
-  return  token ? (
+  return token ? (
     <div className="publish">
       <h2>Vends ton article</h2>
       <form onSubmit={handleSubmit}>
@@ -193,7 +207,7 @@ const Publish = ({token}) => {
       {imgFromCloudinary && <img src={imgFromCloudinary} alt="" />}
     </div>
   ) : (
-    <Navigate to="/login"  />
+    <Navigate to="/login" />
   );
 };
 

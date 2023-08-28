@@ -218,6 +218,7 @@ article img {
   border: 1px solid var(--blue);
   font-weight: bold;
   font-size: 16px;
+  cursor: pointer;
 
 }
 
@@ -253,6 +254,7 @@ article img {
   top: 30%;
   font-size: 20px;
   right: 10px;
+  cursor: pointer;
 }
 
 .formulaire form p {
@@ -260,6 +262,7 @@ article img {
 
   text-align: center;
   margin-top: 10px;
+  cursor: pointer;
 }
 
 .formulaire form h1 {
@@ -381,6 +384,16 @@ border-bottom: 1px solid #ebedee;
   display: flex;
     justify-content: space-between;
     padding: 24px;
+    
+
+}
+
+.text-input>input:focus, .text-input>textarea:focus, .checkbox-section>input:focus{
+  
+    border-bottom: 1px solid var(--blue);
+    outline: none;
+
+  
 }
 
 .text-input>h4{
