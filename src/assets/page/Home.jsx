@@ -3,34 +3,26 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import Hero from "../../components/Hero";
 
-
-const Home = () => {
+const Home = ({ search }) => {
   const [data, setData] = useState({});
   const [isLoading, setIsLoading] = useState(true);
 
-
   useEffect(() => {
-  
-      const fetchData = async () => {
-        try {
+    const fetchData = async () => {
+      try {
         const response = await axios.get(
-          `https://lereacteur-vinted-api.herokuapp.com/offers`
+          `https://lereacteur-vinted-api.herokuapp.com/offers?title=${search}`
         );
         // console.log(response.data);
         setData(response.data);
         setIsLoading(false);
         //console.log(data);
-    
-    } catch (err) {
-      console.log(err);
-    }
-  }
-      fetchData();
-  
-   
-  }, []);
-
-
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchData();
+  }, [search]);
 
   return isLoading ? (
     <span>Loading... </span>
@@ -42,28 +34,35 @@ const Home = () => {
           // console.log(offer)
           return (
             <div key={offer._id}>
-              <Link
-                to={`/offer/${offer._id}`}
-               >
+              <Link to={`/offer/${offer._id}`}>
                 <article>
                   <div>
-                    {offer.owner.account.avatar && <img className="avatar" src={offer.owner.account.avatar.secure_url} alt={offer.owner.account.username}/> } 
+                    {offer.owner.account.avatar && (
+                      <img
+                        className="avatar"
+                        src={offer.owner.account.avatar.secure_url}
+                        alt={offer.owner.account.username}
+                      />
+                    )}
                     <span>{offer.owner.account.username}</span>
                   </div>
                   <div>
-                    <img src={offer.product_image.secure_url} alt={offer.product_name} />
+                    <img
+                      src={offer.product_image.secure_url}
+                      alt={offer.product_name}
+                    />
                   </div>
                   <div>
                     <p>{offer.product_price}€</p>
                     <p>{offer.product_name}</p>
-                    {offer.product_details.map((detail, index)=>{
-                          if(detail.MARQUE){
-                            return <p key={index}>{detail.MARQUE}</p>
-                          } else if(detail.TAILLE){
-                            return <p key={index}>{detail.TAILLE}</p>
-                          }else{
-                            return null
-                          }
+                    {offer.product_details.map((detail, index) => {
+                      if (detail.MARQUE) {
+                        return <p key={index}>{detail.MARQUE}</p>;
+                      } else if (detail.TAILLE) {
+                        return <p key={index}>{detail.TAILLE}</p>;
+                      } else {
+                        return null;
+                      }
                     })}
                   </div>
                 </article>

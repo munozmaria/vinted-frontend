@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/img/logo.jpg";
-import axios from "axios";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
@@ -8,44 +8,41 @@ import {
   faMagnifyingGlass,
   faEyeSlash,
 } from "@fortawesome/free-solid-svg-icons";
-import { useEffect, useState } from "react";
+
 library.add(faEye, faEyeSlash, faMagnifyingGlass);
 
-const Header = ({ token, handleToken }) => {
-  const [data, setData] = useState();
-  const [isLoading, setIsLoading] = useState(false);
-
-  const url = `https://lereacteur-vinted-api.herokuapp.com/offers`;
-
+const Header = ({ token, handleToken, search, setSearch }) => {
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(url); //console.log(response.data);
-        setData(response.data.offers);
-        setIsLoading(false);
-       
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    fetchData();
-  }, []);
- 
-
-  return isLoading ? (
-    <span>Loading... </span>
-  ) : (
+  return (
     <header>
       <div className="container">
-        <img   src={logo} alt="" onClick={() => {
-          navigate("/");
-        }}/>
+        <img
+          src={logo}
+          alt=""
+          onClick={() => {
+            navigate("/");
+          }}
+        />
 
         <div className="recherche">
           <FontAwesomeIcon className="magnifyGlass" icon={faMagnifyingGlass} />
-          <input type="text" placeholder="Recherche des articles" />
+          <input
+            type="text"
+            value={search}
+            placeholder="Rechercher des articles"
+            onChange={(event) => {
+              setSearch(event.target.value);
+            }}
+          />
+
+            <div>
+              <span></span>
+              <span></span>
+              <div></div>
+            </div>
+
+
         </div>
 
         {!token ? (
@@ -74,9 +71,8 @@ const Header = ({ token, handleToken }) => {
 
         <div>
           <Link to="/publish">
-          <button>Vends tes articles</button>
+            <button>Vends tes articles</button>
           </Link>
-         
         </div>
       </div>
     </header>
