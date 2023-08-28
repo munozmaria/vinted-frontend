@@ -9,6 +9,8 @@ import Signup from "./assets/page/Signup";
 import Login from "./assets/page/Login";
 import Cookies from "js-cookie";
 import { useState } from "react";
+import Publish from "./assets/page/Publish";
+
 
 function App() {
 
@@ -36,6 +38,7 @@ function App() {
         <Route path="/offer/:id" element={<Offer />} />
         <Route path="/signup" element={<Signup token={token} handleToken={handleToken}/>} />
         <Route path="/login" element={<Login handleToken={handleToken} />} />
+        <Route path="/publish" element={<Publish token={token}/>} />
       </Routes>
     </Router>
   );

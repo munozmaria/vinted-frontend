@@ -36,6 +36,9 @@ ol, ul, li, a {
 	text-decoration: none;
 	color: black;
 }
+button, input {
+    outline: none;
+}
 blockquote, q {
 	quotes: none;
 }

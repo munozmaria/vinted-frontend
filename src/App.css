@@ -201,7 +201,7 @@ article img {
 
 }
 
-form {
+.formulaire form {
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -209,7 +209,7 @@ form {
 
 }
 
-form button {
+.formulaire form button {
   margin-top: 25px;
   background-color: var(--blue);
   padding: 10px 20px;
@@ -221,7 +221,7 @@ form button {
 
 }
 
-form input {
+.formulaire form input {
   padding: 20px;
 
   border-radius: 5px;
@@ -232,7 +232,7 @@ form input {
 }
 
 
-form input:focus {
+.formulaire form input:focus {
   border: 2px solid rgb(192, 167, 241);
   outline: none;
 }
@@ -255,14 +255,14 @@ form input:focus {
   right: 10px;
 }
 
-form p {
+.formulaire form p {
   color: var(--blue);
 
   text-align: center;
   margin-top: 10px;
 }
 
-form h1 {
+.formulaire form h1 {
   text-align: center;
   font-size: 25px;
   letter-spacing: 2px;
