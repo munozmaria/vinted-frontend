@@ -1,5 +1,5 @@
 import "./App.css";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 // Pages
@@ -11,7 +11,6 @@ import Login from "./assets/page/Login";
 import Cookies from "js-cookie";
 import Publish from "./assets/page/Publish";
 import Payment from "./assets/page/Payment";
-import axios from "axios";
 
 function App() {
   const [token, setToken] = useState(Cookies.get("token") || null);
@@ -31,8 +30,6 @@ function App() {
       setToken(null);
     }
   };
-
-
 
   return (
     <Router>

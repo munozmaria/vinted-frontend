@@ -13,6 +13,12 @@
   text-align: center;
 }
 
+button{
+  transition: transform 0.8s;
+}
+button:hover{
+  transform: scale(1.1);
+}
 
 
 /* =================================================================HEADER =================================================================*/
@@ -151,16 +157,14 @@ header .container>div:last-child button {
   color: black;
   position: absolute;
   top: 20%;
-  padding: 25px;
-  width: 360px;
+  padding: 33px;
+  width: 382px;
   border-radius: 3px;
   box-shadow: 0 0 2px hsla(0, 0%, 7%, .24);
-  height: 220px;
+  height: 263px;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-
-
 }
 
 .hero-ready p {
@@ -226,9 +230,14 @@ main article img {
 
 .offre article{
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
     gap: 50px;
     padding: 80px;
+}
+
+.offre img{
+  object-fit: cover;
+  height: 300px;
 }
 
 .offre button{
