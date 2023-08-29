@@ -27,6 +27,7 @@ const Publish = ({ token, setLoginModal }) => {
     if (!token) {
       navigate("/")
       setLoginModal(true)
+      document.body.style.overflow = 'hidden';
     }
   }, [setLoginModal, token, navigate]);
 

@@ -1,9 +1,11 @@
 :root {
-  --blue: #2baeb7
+  --blue: #2baeb7;
+  
 }
 
 * {
   box-sizing: border-box;
+  
 }
 
 .container {
@@ -11,6 +13,7 @@
   margin: 0 auto;
 
   text-align: center;
+
 }
 
 

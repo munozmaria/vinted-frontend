@@ -25,6 +25,7 @@ function App() {
     if (!token) {
       setLoginModal(false);
       setSignupModal(true);
+      document.body.style.overflow = 'hidden';
     }
   };
 
@@ -32,6 +33,7 @@ function App() {
     if (!token) {
       setSignupModal(false);
       setLoginModal(true);
+      document.body.style.overflow = 'hidden';
     }
   };
 
@@ -50,12 +52,14 @@ function App() {
   const handleCloseModals = () => {
     setLoginModal(false);
     setSignupModal(false);
+    document.body.style.overflow = 'auto';
     //console.log("heee")
   };
 
   const switchModals = () => {
     setLoginModal(!loginModal);
     setSignupModal(!signupModal);
+   
   };
 
   return (
