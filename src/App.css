@@ -355,7 +355,7 @@ article img {
 .picture-section {
   display: flex;
   justify-content: center;
-
+  gap: 50px;
   align-items: center;
   height: 250px;
   width: 100%;
@@ -383,6 +383,14 @@ article img {
 .selectPicture:hover {
   transform: scale(1.1);
 }
+
+
+.picture-before-post{
+  object-fit: cover;
+  height: 200px;
+}
+
+
 
 .label-file {
   color: #2CB1BA;
@@ -418,13 +426,7 @@ article img {
   border-radius: 5px;
 }
 
-.text-input-section>div:first-child {
 
-  border-bottom: 1px solid #ebedee;
-  vertical-align: center;
-
-
-}
 
 .text-input>input::placeholder,
 .text-input>textarea::placeholder,
@@ -526,4 +528,115 @@ article img {
 
 .button-form-validation:hover {
   transform: scale(1.1);
+}
+
+
+/*=================================PAYMENT=================================*/
+.payment-wrapper{
+  background-color: #ebedee;;
+  height: calc(100vh - 59px);
+}
+.payment-container{
+  margin: 0 auto;
+  padding: 36px 20px;
+  width: 600px;
+}
+
+.payment-card{
+  background: #fff;
+  padding: 24px;
+  text-align: justify;
+}
+
+.payment-card .content {
+  padding: 24px;
+  text-align: justify;
+}
+
+.payment-card > h3{
+  color: #999;
+    display: block;
+    font-size: 19px;
+    line-height: 18px;
+    padding: 24px 24px 8px;
+}
+
+.offerDetails{
+  padding:24px;
+  text-align: justify;
+}
+
+.offerDetails li, .total li {
+  align-items: center;
+  color: #666;
+  display: grid;
+  font-size: 16px;
+  grid: auto/1fr auto;
+  line-height: 22px;
+  padding: 4px 0;
+}
+
+ .line{
+  background: hsla(0,0%,7%,.1);
+  display: block;
+  height: 1px;
+  margin: 24px 0;
+  width: 100%;
+}
+
+.total{
+  
+  text-justify: justify;
+ 
+  font-weight: bold;
+}
+
+
+.text{
+  background: #fff;
+  padding: 5px 24px;
+  text-align: justify;
+}
+
+.text .content{
+  padding: 24px;
+  text-align: justify;
+  font-size: 18px;
+}
+
+.text span{
+  font-weight: bold;
+}
+.formPurchase{
+  background: #fff;
+  border: 0;
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(50,50,93,.149), 0 1px 0 rgba(0,0,0,.02);
+  display: block;
+  font-family: Source Code Pro,monospace;
+  font-size: 1em;
+  margin: 10px 0 20px;
+  outline: 0;
+  padding: 10px 14px;
+}
+
+.text button{
+  background: #00c06d;
+    border: 1px solid;
+    border-color: #00c06d;
+    border-radius: 4px;
+    color: #fff;
+    display: block;
+    font-size: 16px;
+    height: 44px;
+    line-height: 22px;
+    margin-top: 8px;
+    padding: 0 14px;
+    width: 100%;
+    cursor: pointer;
+}
+
+.text button:hover{
+  background-color: white;
+  color: #00c06d;
 }

@@ -53,7 +53,7 @@ const Publish = ({ token }) => {
       } else {
         alert("Une erreur est survenue, veuillez réssayer");
       }
-      console.log(response.data);
+      //console.log(response.data);
     } catch (error) {
       console.log(error.response);
     }
@@ -79,7 +79,7 @@ const Publish = ({ token }) => {
               }}
             />
           </div>
-            {picture && <img src={URL.createObjectURL(picture)} alt="product image before posting"></img>}
+            {picture && <img className="picture-before-post"  src={URL.createObjectURL(picture)} alt="product image before post"></img>}
         </div>
         <div className="text-input-section">
           <div className="text-input">

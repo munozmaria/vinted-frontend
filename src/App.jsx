@@ -10,6 +10,7 @@ import Signup from "./assets/page/Signup";
 import Login from "./assets/page/Login";
 import Cookies from "js-cookie";
 import Publish from "./assets/page/Publish";
+import Payment from "./assets/page/Payment";
 
 function App() {
   const [token, setToken] = useState(Cookies.get("token") || null);
@@ -54,6 +55,7 @@ function App() {
         />
         <Route path="/login" element={<Login handleToken={handleToken} />} />
         <Route path="/publish" element={<Publish token={token} />} />
+        <Route path="/payment" element={<Payment></Payment>} />
       </Routes>
     </Router>
   );
