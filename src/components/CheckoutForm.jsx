@@ -1,9 +1,13 @@
 import { useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
 
 import axios from "axios";
+import { useState } from "react";
 
-const CheckoutForm = ({dataId}) => {
-  console.log(dataId)
+const CheckoutForm = ({dataId, title, amount}) => {
+  //console.log(dataId)
+
+  const [isLoading, setIsLoading] = useState(false);
+  const [paymentCompleted, setPaymentCompleted] = useState(false);
   const stripe = useStripe();
   const elements = useElements();
 
@@ -11,6 +15,7 @@ const CheckoutForm = ({dataId}) => {
     event.preventDefault();
 
     try{
+      setIsLoading(true);
         const cardElement = elements.getElement(CardElement);
 
         const stripeResponse = await stripe.createToken(cardElement, {
@@ -21,9 +26,18 @@ const CheckoutForm = ({dataId}) => {
         //console.log(stripeToken);
 
         const response = await axios.post('https://lereacteur-vinted-api.herokuapp.com/payment', {
-            stripeToken
+            token: stripeToken,
+            title: title,
+            amount: amount
         })
         console.log(response.data);
+        setIsLoading(false);
+        if (response.data.status === "succeeded") {
+          setPaymentCompleted(true);
+        }
+
+
+        
 
     } catch(error){
         console.error(error.response.data);
@@ -34,8 +48,14 @@ const CheckoutForm = ({dataId}) => {
   return (
     <>
       <form className="formPurchase" onSubmit={handleSubmit}>
+        <div className="formPurchase-component">
         <CardElement />
-        <button type="submit">Valider</button>
+
+        </div>
+        {paymentCompleted == true ? (
+          <p>Payment done</p>
+        ) : (<button type="submit" disabled={isLoading}>Valider</button>)}
+        
       </form>
     </>
   );

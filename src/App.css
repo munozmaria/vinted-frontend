@@ -258,6 +258,8 @@ main article img {
   justify-content: space-between;
   padding: 40px;
   width: 320px;
+  align-items: center;
+  text-align: start;
 }
 
 /*================================ SIGNUP =================================================================*/
@@ -643,7 +645,7 @@ main article img {
 .text span{
   font-weight: bold;
 }
-.formPurchase{
+.formPurchase-component{
   background: #fff;
   border: 0;
   border-radius: 4px;
