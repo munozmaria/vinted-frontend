@@ -69,6 +69,10 @@ header .container>div:nth-child(3) {
   cursor: pointer;
 }
 
+.button-shop:hover{
+  box-shadow: 10px 10px 19px -4px rgba(23,172,229,0.52);
+}
+
 .button-logout {
   background-color: #c2175b;
   padding: 10px 20px;
@@ -77,6 +81,10 @@ header .container>div:nth-child(3) {
   border: 1px solid #c2175b;
   font-weight: bold;
   cursor: pointer;
+}
+
+.button-logout:hover{
+  box-shadow: 10px 10px 19px -4px rgba(229,23,64,0.52);
 }
 
 /*================================================================RECHERCHE INPUT================================================================*/
