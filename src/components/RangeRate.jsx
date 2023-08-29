@@ -61,7 +61,7 @@ const RangeRate = ({ setRangePriceOffers }) => {
                   top: "-28px",
                   color: "#fff",
                   fontSize: "12px",
-                  fontFamily: "Maison Neue",
+                
                   padding: "4px",
                   borderRadius: "4px",
                   backgroundColor: "#2cb1ba",

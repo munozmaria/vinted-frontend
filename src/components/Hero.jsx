@@ -15,6 +15,7 @@ return(
           navigate("/publish");
         }}>Commencer à vendre</button>
     </div>
+        <div className="hero-overlay"></div>
     </div>
    </div>
     </>
