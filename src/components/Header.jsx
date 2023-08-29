@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import logo from "../assets/img/logo.jpg";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -20,9 +20,11 @@ const Header = ({
   setSearch,
   setRangePriceOffers,
   setSortedPrice,
-  sortedPrice
+  sortedPrice,
 }) => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const currentPath = location.pathname;
 
   return (
     <header>
@@ -45,28 +47,32 @@ const Header = ({
               setSearch(event.target.value);
             }}
           />
-
-          <div>
-            <SwitchPrice setSortedPrice={setSortedPrice} sortedPrice={sortedPrice}></SwitchPrice>
-            <RangeRate setRangePriceOffers={setRangePriceOffers}></RangeRate>
-          </div>
+          {currentPath === "/" && (
+            <div>
+              <SwitchPrice
+                setSortedPrice={setSortedPrice}
+                sortedPrice={sortedPrice}></SwitchPrice>
+              <RangeRate setRangePriceOffers={setRangePriceOffers}></RangeRate>
+            </div>
+          )}
         </div>
 
         {!token ? (
           <div>
             <Link to="/signup">
               {" "}
-              <button>S'inscrire</button>
+              <button className="button-signup"> S'inscrire</button>
             </Link>
 
             <Link to="/login">
-              <button>Se connecter</button>
+              <button className="button-login">Se connecter</button>
             </Link>
           </div>
         ) : (
           <div>
             <Link to="/">
               <button
+                className="button-logout"
                 onClick={() => {
                   handleToken(null);
                 }}>
@@ -78,7 +84,7 @@ const Header = ({
 
         <div>
           <Link to="/publish">
-            <button>Vends tes articles</button>
+            <button className="button-shop">Vends tes articles</button>
           </Link>
         </div>
       </div>

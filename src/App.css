@@ -51,7 +51,7 @@ header .container>div:nth-child(3) {
 }
 
 
-header .container>div:nth-child(3) button {
+.button-signup, .button-login{
   padding: 10px 20px;
   border-radius: 5px;
   border: 1px solid var(--blue);
@@ -59,12 +59,22 @@ header .container>div:nth-child(3) button {
   cursor: pointer;
 }
 
-header .container>div:last-child button {
+ .button-shop{
   background-color: var(--blue);
   padding: 10px 20px;
   border-radius: 5px;
   color: white;
   border: 1px solid var(--blue);
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.button-logout{
+  background-color: #c2175b;
+  padding: 10px 20px;
+  border-radius: 5px;
+  color: white;
+  border: 1px solid #c2175b;
   font-weight: bold;
   cursor: pointer;
 }
