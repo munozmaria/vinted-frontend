@@ -15,7 +15,7 @@ const Home = ({ search, rangePriceOffers, sortedPrice }) => {
             !sortedPrice ? "price-desc" : "price-asc"
           }`
         );
-        // console.log(response.data);
+        //console.log(response.data);
         setData(response.data);
         setIsLoading(false);
         //console.log(data);
@@ -33,7 +33,7 @@ const Home = ({ search, rangePriceOffers, sortedPrice }) => {
       <Hero />
       <main className="container">
         {data.offers.map((offer) => {
-          // console.log(offer)
+           //console.log(offer)
           return (
             <div key={offer._id}>
               <Link to={`/offer/${offer._id}`}>

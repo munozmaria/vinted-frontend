@@ -17,6 +17,7 @@ function App() {
   const [rangePriceOffers, setRangePriceOffers] = useState([0, 10000]);
   const [search, setSearch] = useState("");
   const[sortedPrice, setSortedPrice] = useState("price-asc")
+  const [dataId, setDataId] = useState("")
 
   const handleToken = (token) => {
     if (token) {
@@ -53,9 +54,9 @@ function App() {
           path="/signup"
           element={<Signup token={token} handleToken={handleToken} />}
         />
-        <Route path="/login" element={<Login handleToken={handleToken} />} />
+        <Route path="/login" element={<Login handleToken={handleToken} setDataId={setDataId}  />} />
         <Route path="/publish" element={<Publish token={token} />} />
-        <Route path="/payment" element={<Payment></Payment>} />
+        <Route path="/payment" element={<Payment dataId={dataId}></Payment>} />
       </Routes>
     </Router>
   );

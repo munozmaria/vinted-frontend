@@ -48,10 +48,11 @@ const Signup = ({ handleToken }) => {
           newsletter: checkNewsletter,
         }
       );
-      //console.log(response.data);
+      console.log(response.data);
 
       //console.log(token);
       handleToken(response.data.token);
+      
       navigate("/");
     } catch (error) {
       if (

@@ -2,11 +2,15 @@ import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import CheckoutForm from "../../components/CheckoutForm";
 
+
 const stripePromise = loadStripe(
   "pk_test_51NkPpBEdxkwFd5Me1qO3ENdiGiCAv653ILss6K2UqaGeS6j1BFlMwAqUSxd01NWQ6AIlO9QzZRxDV1REwrEfpLrG00oZgQVyb6"
 );
 
-const Payment = () => {
+const Payment = ({dataId}) => {
+   
+
+
   return (
     <Elements stripe={stripePromise}>
         <div className="payment-wrapper">
@@ -47,8 +51,8 @@ const Payment = () => {
           
         <div className="line"></div>
         
-          <CheckoutForm />
-          <button type="submit">Valider</button>
+          <CheckoutForm dataId={dataId}   />
+         
        
         </div>
         </div>

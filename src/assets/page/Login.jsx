@@ -7,7 +7,7 @@ import { useState } from "react";
 
 library.add(faEye, faEyeSlash);
 
-const Login = ({ handleToken }) => {
+const Login = ({ handleToken, setDataId }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [hashPassword, setHashPassword] = useState(true);
@@ -23,9 +23,10 @@ const Login = ({ handleToken }) => {
           password,
         }
       );
-      //console.log(response.data);
+      console.log(response.data);
 
       handleToken(response.data.token);
+      setDataId(response.data.account.usarname);
 
       if (response.data.token) {
         navigate("/publish");
