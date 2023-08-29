@@ -9,7 +9,7 @@ const stripePromise = loadStripe(
 
 const Payment = ({dataId}) => {
    
-
+console.log(dataId);
 
   return (
     <Elements stripe={stripePromise}>

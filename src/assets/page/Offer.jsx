@@ -34,6 +34,9 @@ const Offer = () => {
         <div>
           <img src={data.product_image.secure_url} alt={data.product_name} />
         </div>
+        <div className="offre-details">
+
+
         <div>
           <p>{data.owner.account.username}</p>
         </div>
@@ -54,6 +57,7 @@ const Offer = () => {
           })}
         </div>
         <Link to='/payment'><button>Acheter</button></Link>
+        </div>
         
       </article>
     </div>

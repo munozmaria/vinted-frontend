@@ -193,7 +193,7 @@ main {
 
 
 
-article {
+main article {
   cursor: pointer;
   padding: 10px 5px 6px 16px;
   width: 235px;
@@ -208,7 +208,7 @@ article {
   border-radius: 50%;
 }
 
-article img {
+main article img {
   height: 360px;
   object-fit: cover;
   width: 235px;
@@ -218,11 +218,38 @@ article img {
 /*================================ SELECTED OFFREE =================================================================*/
 
 .offre {
-  display: flex;
-  justify-content: center;
+
+  background-color: #ebedee;
+    height: calc(100vh - 60px);
+  
 }
 
+.offre article{
+  display: flex;
+  justify-content: space-around;
+    gap: 50px;
+    padding: 80px;
+}
 
+.offre button{
+  background-color: var(--blue);
+  padding: 10px 20px;
+  border-radius: 5px;
+  color: white;
+  border: 1px solid var(--blue);
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.offre-details{
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 40px;
+  width: 320px;
+}
 
 /*================================ SIGNUP =================================================================*/
 

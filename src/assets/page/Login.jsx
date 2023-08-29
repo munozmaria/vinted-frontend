@@ -25,8 +25,8 @@ const Login = ({ handleToken, setDataId }) => {
       );
       console.log(response.data);
 
-      handleToken(response.data.token);
-      setDataId(response.data.account.usarname);
+      handleToken(response.data.token,response.data._id);
+    
 
       if (response.data.token) {
         navigate("/publish");

@@ -3,6 +3,7 @@ import { useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
 import axios from "axios";
 
 const CheckoutForm = ({dataId}) => {
+  console.log(dataId)
   const stripe = useStripe();
   const elements = useElements();
 
