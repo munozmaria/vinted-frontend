@@ -24,7 +24,7 @@ const Payment = ({dataId}) => {
             <ul>
               <li>
                 Commande
-                <span>1€</span>
+                <span>{amount}€</span>
               </li>
               <li>
                 Frais protection acheteurs
@@ -40,7 +40,7 @@ const Payment = ({dataId}) => {
               <ul>
                 <li>
                   Total
-                  <span>1.3€</span>
+                  <span>{amount}€</span>
                 </li>
               </ul>
             </div>
@@ -48,8 +48,8 @@ const Payment = ({dataId}) => {
         </div>
         <div className="text">
           <div className="content">
-            Il ne vous reste plus qu'un étape pour vous offrir <span>aa</span>.
-            Vous allez payer <span>1.3 €</span> (frais de protection et frais de
+            Il ne vous reste plus qu'un étape pour vous offrir <span>{title}</span>.
+            Vous allez payer <span>{amount} €</span> (frais de protection et frais de
             port inclus).
           
         <div className="line"></div>
