@@ -77,7 +77,6 @@ function App() {
           setDataId={setDataId}
           handleLoginButton={handleLoginButton}
           handleCloseModals={()=>{
-            console.log('toto')
             handleCloseModals()
           }}
           switchModals={switchModals}

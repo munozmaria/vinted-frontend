@@ -43,9 +43,9 @@ const Offer = () => {
               const key = keys[0];
 
               return (
-                <li>
+                <li key={index}>
                   {" "}
-                  <span key={index}>{key}:</span>
+                  <span >{key}:</span>
                   <span>{detail[key]}</span>
                 </li>
               );

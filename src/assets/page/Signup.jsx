@@ -177,7 +177,7 @@ const Signup = ({ handleToken, handleCloseModals, switchModals }) => {
 
           <button type="submit">S'inscrire</button>
           {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
-          <span onClick={switchModals}>Tu as déjà un compte ? Connectes-toi !</span>
+          <p onClick={switchModals}>Tu as déjà un compte ? Connectes-toi !</p>
         </form>
       </div>
     </div>

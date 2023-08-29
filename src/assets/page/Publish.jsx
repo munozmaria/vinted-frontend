@@ -3,8 +3,8 @@ import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
-import { Navigate, useNavigate } from "react-router-dom";
-import Login from "./Login";
+import {  useNavigate } from "react-router-dom";
+
 
 library.add(faPlus);
 
@@ -19,7 +19,7 @@ const Publish = ({ token, setLoginModal }) => {
   const [city, setCity] = useState("");
   const [price, setPrice] = useState("");
   const [exchange, setExchange] = useState(false);
-  const [imgFromCloudinary, setImgFromCloudinary] = useState("");
+  const [, setImgFromCloudinary] = useState("");
 
   const navigate = useNavigate();
 
@@ -28,7 +28,7 @@ const Publish = ({ token, setLoginModal }) => {
       navigate("/")
       setLoginModal(true)
     }
-  }, []);
+  }, [setLoginModal, token, navigate]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
