@@ -97,7 +97,6 @@ const Publish = ({ token }) => {
             <h4>Décris ton article</h4>
             <textarea
               type="text"
-              id="description"
               rows="5"
               placeholder="ex: porté quelquefois, taille correctement"
               value={description}
@@ -202,7 +201,7 @@ const Publish = ({ token }) => {
           </button>
         </div>
       </form>
-      {imgFromCloudinary && <img src={imgFromCloudinary} alt="" />}
+
     </div>
   ) : (
     <Navigate to="/login" />
