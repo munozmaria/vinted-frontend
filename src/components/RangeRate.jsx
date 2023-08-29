@@ -24,7 +24,7 @@ const RangeRate = ({ setRangePriceOffers }) => {
               display: "flex",
               width: "50%",
             }}>
-            <div
+            <div key={props.id}
               {...props}
               style={{
                 height: "5px",
