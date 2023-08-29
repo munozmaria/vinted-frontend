@@ -79,6 +79,7 @@ const Publish = ({ token }) => {
               }}
             />
           </div>
+            {picture && <img src={URL.createObjectURL(picture)} alt="product image before posting"></img>}
         </div>
         <div className="text-input-section">
           <div className="text-input">
