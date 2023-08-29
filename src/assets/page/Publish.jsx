@@ -1,13 +1,14 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { Navigate, useNavigate } from "react-router-dom";
+import Login from "./Login";
 
 library.add(faPlus);
 
-const Publish = ({ token }) => {
+const Publish = ({ token, setLoginModal }) => {
   const [picture, setPicture] = useState();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -21,6 +22,13 @@ const Publish = ({ token }) => {
   const [imgFromCloudinary, setImgFromCloudinary] = useState("");
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!token) {
+      navigate("/")
+      setLoginModal(true)
+    }
+  }, []);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -60,6 +68,7 @@ const Publish = ({ token }) => {
   };
 
   return token ? (
+    <div className="publish-container">
     <div className="publish">
       <h2>Vends ton article</h2>
       <form onSubmit={handleSubmit}>
@@ -79,7 +88,12 @@ const Publish = ({ token }) => {
               }}
             />
           </div>
-            {picture && <img className="picture-before-post"  src={URL.createObjectURL(picture)} alt="product image before post"></img>}
+          {picture && (
+            <img
+              className="picture-before-post"
+              src={URL.createObjectURL(picture)}
+              alt="product image before post"></img>
+          )}
         </div>
         <div className="text-input-section">
           <div className="text-input">
@@ -202,10 +216,10 @@ const Publish = ({ token }) => {
           </button>
         </div>
       </form>
-
+    </div>
     </div>
   ) : (
-    <Navigate to="/login" />
+    <p>hello</p>
   );
 };
 

@@ -18,6 +18,22 @@ function App() {
   const [search, setSearch] = useState("");
   const [sortedPrice, setSortedPrice] = useState("price-asc");
   const [dataId, setDataId] = useState("");
+  const [signupModal, setSignupModal] = useState(false);
+  const [loginModal, setLoginModal] = useState(false);
+
+  const handleSingupButton = () => {
+    if (!token) {
+      setLoginModal(false);
+      setSignupModal(true);
+    }
+  };
+
+  const handleLoginButton = () => {
+    if (!token) {
+      setSignupModal(false);
+      setLoginModal(true);
+    }
+  };
 
   const handleToken = (token, dataId) => {
     if (token) {
@@ -31,9 +47,47 @@ function App() {
     }
   };
 
+  const handleCloseModals = () => {
+    setLoginModal(false);
+    setSignupModal(false);
+    console.log("heee")
+  };
+
+  const switchModals = () => {
+    setLoginModal(!loginModal);
+    setSignupModal(!signupModal);
+  };
+
   return (
     <Router>
+      {signupModal ? (
+        <Signup
+          token={token}
+          handleToken={handleToken}
+          handleSingupButton={handleSingupButton}
+          handleCloseModals={handleCloseModals}
+          switchModals={switchModals}
+        />
+      ) : (
+        ""
+      )}
+      {loginModal ? (
+        <Login
+          handleToken={handleToken}
+          setDataId={setDataId}
+          handleLoginButton={handleLoginButton}
+          handleCloseModals={()=>{
+            console.log('toto')
+            handleCloseModals()
+          }}
+          switchModals={switchModals}
+        />
+      ) : (
+        ""
+      )}
       <Header
+        handleSingupButton={handleSingupButton}
+        handleLoginButton={handleLoginButton}
         token={token}
         handleToken={handleToken}
         search={search}
@@ -55,15 +109,15 @@ function App() {
           }
         />
         <Route path="/offer/:id" element={<Offer />} />
-        <Route
+        {/* <Route
           path="/signup"
           element={<Signup token={token} handleToken={handleToken} />}
-        />
-        <Route
+        /> */}
+        {/* <Route
           path="/login"
           element={<Login handleToken={handleToken} setDataId={setDataId} />}
-        />
-        <Route path="/publish" element={<Publish token={token} />} />
+        /> */}
+        <Route path="/publish" element={<Publish token={token} setLoginModal={setLoginModal} />} />
         <Route path="/payment" element={<Payment dataId={dataId}></Payment>} />
       </Routes>
     </Router>

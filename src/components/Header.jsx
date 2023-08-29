@@ -21,6 +21,8 @@ const Header = ({
   setRangePriceOffers,
   setSortedPrice,
   sortedPrice,
+  handleSingupButton,
+  handleLoginButton,
 }) => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -59,14 +61,14 @@ const Header = ({
 
         {!token ? (
           <div>
-            <Link to="/signup">
+            {" "}
+            <button onClick={handleSingupButton} className="button-signup">
               {" "}
-              <button className="button-signup"> S'inscrire</button>
-            </Link>
-
-            <Link to="/login">
-              <button className="button-login">Se connecter</button>
-            </Link>
+              S'inscrire
+            </button>
+            <button onClick={handleLoginButton} className="button-login">
+              Se connecter
+            </button>
           </div>
         ) : (
           <div>

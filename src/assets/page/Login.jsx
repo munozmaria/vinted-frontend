@@ -1,13 +1,14 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useState } from "react";
 
-library.add(faEye, faEyeSlash);
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { faEye, faEyeSlash, faX } from "@fortawesome/free-solid-svg-icons";
 
-const Login = ({ handleToken, setDataId }) => {
+library.add(faEye, faEyeSlash, faX);
+
+const Login = ({ handleToken, handleCloseModals, switchModals }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [hashPassword, setHashPassword] = useState(true);
@@ -23,13 +24,14 @@ const Login = ({ handleToken, setDataId }) => {
           password,
         }
       );
-      console.log(response.data);
+      //console.log(response.data);
 
-      handleToken(response.data.token,response.data._id);
-    
+      handleToken(response.data.token, response.data._id);
 
       if (response.data.token) {
         navigate("/publish");
+        handleCloseModals(true)
+        
       } else {
         alert("Une erreur est survenue, veuillez réssayer.");
       }
@@ -47,6 +49,14 @@ const Login = ({ handleToken, setDataId }) => {
   return (
     <>
       <div className="formulaire">
+        <i
+          className="closeModal"
+          onClick={() => {
+            //console.log("hzrzrzr")
+            handleCloseModals();
+          }}>
+          <FontAwesomeIcon icon={faX} />
+        </i>
         <div className="formContainer">
           <form onSubmit={handleLogin}>
             <h1>Se connecter</h1>
@@ -83,7 +93,7 @@ const Login = ({ handleToken, setDataId }) => {
             </div>
 
             <button type="submit">Se connecter</button>
-            <p>Pas encore de compte? Inscris-toi!</p>
+            <p onClick={switchModals}>Pas encore de compte? Inscris-toi!</p>
           </form>
         </div>
       </div>

@@ -13,12 +13,7 @@
   text-align: center;
 }
 
-button{
-  transition: transform 0.4s;
-}
-button:hover{
-  transform: scale(1.025);
-}
+
 
 
 /* =================================================================HEADER =================================================================*/
@@ -52,7 +47,8 @@ header .container>div:nth-child(3) {
 }
 
 
-.button-signup, .button-login{
+.button-signup,
+.button-login {
   padding: 10px 20px;
   border-radius: 5px;
   border: 1px solid var(--blue);
@@ -60,7 +56,7 @@ header .container>div:nth-child(3) {
   cursor: pointer;
 }
 
- .button-shop{
+.button-shop {
   background-color: var(--blue);
   padding: 10px 20px;
   border-radius: 5px;
@@ -70,7 +66,7 @@ header .container>div:nth-child(3) {
   cursor: pointer;
 }
 
-.button-logout{
+.button-logout {
   background-color: #c2175b;
   padding: 10px 20px;
   border-radius: 5px;
@@ -179,6 +175,7 @@ header .container>div:nth-child(3) {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
+  z-index: 2;
 }
 
 .hero-ready p {
@@ -196,16 +193,16 @@ header .container>div:nth-child(3) {
   cursor: pointer;
 }
 
-.hero-overlay{
+.hero-overlay {
   position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background-image: url(./assets/img/overlay.svg);
-    background-position: bottom -1px right -1px;
-    background-repeat: no-repeat;
-    background-size: contain;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-image: url(./assets/img/overlay.svg);
+  background-position: bottom -1px right -1px;
+  background-repeat: no-repeat;
+  background-size: contain;
 }
 
 /* ================================================================= OFFERS =================================================================*/
@@ -250,23 +247,23 @@ main article img {
 .offre {
 
   background-color: #ebedee;
-    height: calc(100vh - 60px);
-  
+  height: calc(100vh - 60px);
+
 }
 
-.offre article{
+.offre article {
   display: flex;
   justify-content: center;
-    gap: 50px;
-    padding: 80px;
+  gap: 50px;
+  padding: 80px;
 }
 
-.offre img{
+.offre img {
   object-fit: cover;
-  height: 300px;
+  height: 400px;
 }
 
-.offre button{
+.offre button {
   background-color: var(--blue);
   padding: 10px 20px;
   border-radius: 5px;
@@ -277,25 +274,67 @@ main article img {
   cursor: pointer;
 }
 
-.offre-details{
+.offre-details {
   background-color: #fff;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-evenly;
   padding: 40px;
   width: 320px;
-  align-items: center;
-  text-align: start;
+
+}
+
+.offer-list-data li {
+  display: flex;
+  padding: 2px 0;
+}
+
+.offer-list-data span {
+  flex: 1 1;
+  font-size: 14px;
+  text-transform: uppercase;
+}
+
+.offer-price {
+  color: #111;
+  font-size: 24px;
+  line-height: 32px;
 }
 
 /*================================ SIGNUP =================================================================*/
 
 
 .formulaire {
-  max-width: 1280px;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  top: 0;
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.7);
+  align-items: center;
+  z-index: 999;    
+  justify-content: center;
+ 
+  /* max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 2rem; */
 
+}
+
+
+.closeModal{
+  position: absolute;
+  top: 4%;
+  right: 7%;
+  cursor: pointer;
+  transition: transform .2s;
+  color:rgb(253, 247, 247);
+  font-weight: bold;
+  font-size: 25px;
+}
+
+.closeModal:hover{
+  transform: scale(1.5)
 }
 
 .formContainer {
@@ -304,6 +343,9 @@ main article img {
   align-items: center;
   justify-content: center;
   margin: auto;
+  background-color: white;
+  padding: 70px;
+  border-radius: 5px;
 
 
 }
@@ -405,15 +447,20 @@ main article img {
 
 /*================================ PUBLISH =================================================================*/
 
+.publish-container{
+  background-color: #EBEDEE;
+}
 .publish {
   width: 1284px;
   margin: 0 auto;
+ 
 
 }
 
 .publish h2 {
   font-size: 24px;
   margin-bottom: 26px;
+  padding-top: 40px;
 }
 
 .picture-section {
@@ -426,7 +473,7 @@ main article img {
   background-color: #fff;
   box-shadow: 0 0 2px gray;
   margin-bottom: 20px;
-  border: 1px solid var(--blue);
+  border: 1px solid #EBEDEE;
   border-radius: 5px;
 }
 
@@ -449,7 +496,7 @@ main article img {
 }
 
 
-.picture-before-post{
+.picture-before-post {
   object-fit: cover;
   height: 200px;
 }
@@ -486,7 +533,7 @@ main article img {
   background-color: #fff;
   box-shadow: 0 0 2px gray;
   margin-bottom: 20px;
-  border: 1px solid var(--blue);
+  border: 1px solid #EBEDEE;
   border-radius: 5px;
 }
 
@@ -593,17 +640,19 @@ main article img {
 
 
 /*=================================PAYMENT=================================*/
-.payment-wrapper{
-  background-color: #ebedee;;
+.payment-wrapper {
+  background-color: #ebedee;
+  ;
   height: calc(100vh - 59px);
 }
-.payment-container{
+
+.payment-container {
   margin: 0 auto;
   padding: 36px 20px;
   width: 600px;
 }
 
-.payment-card{
+.payment-card {
   background: #fff;
   padding: 24px;
   text-align: justify;
@@ -614,20 +663,21 @@ main article img {
   text-align: justify;
 }
 
-.payment-card > h3{
+.payment-card>h3 {
   color: #999;
-    display: block;
-    font-size: 19px;
-    line-height: 18px;
-    padding: 24px 24px 8px;
+  display: block;
+  font-size: 19px;
+  line-height: 18px;
+  padding: 24px 24px 8px;
 }
 
-.offerDetails{
-  padding:24px;
+.offerDetails {
+  padding: 24px;
   text-align: justify;
 }
 
-.offerDetails li, .total li {
+.offerDetails li,
+.total li {
   align-items: center;
   color: #666;
   display: grid;
@@ -637,67 +687,68 @@ main article img {
   padding: 4px 0;
 }
 
- .line{
-  background: hsla(0,0%,7%,.1);
+.line {
+  background: hsla(0, 0%, 7%, .1);
   display: block;
   height: 1px;
   margin: 24px 0;
   width: 100%;
 }
 
-.total{
-  
+.total {
+
   text-justify: justify;
- 
+
   font-weight: bold;
 }
 
 
-.text{
+.text {
   background: #fff;
   padding: 5px 24px;
   text-align: justify;
 }
 
-.text .content{
+.text .content {
   padding: 24px;
   text-align: justify;
   font-size: 18px;
 }
 
-.text span{
+.text span {
   font-weight: bold;
 }
-.formPurchase-component{
+
+.formPurchase-component {
   background: #fff;
   border: 0;
   border-radius: 4px;
-  box-shadow: 0 1px 3px rgba(50,50,93,.149), 0 1px 0 rgba(0,0,0,.02);
+  box-shadow: 0 1px 3px rgba(50, 50, 93, .149), 0 1px 0 rgba(0, 0, 0, .02);
   display: block;
-  font-family: Source Code Pro,monospace;
+  font-family: Source Code Pro, monospace;
   font-size: 1em;
   margin: 10px 0 20px;
   outline: 0;
   padding: 10px 14px;
 }
 
-.text button{
+.text button {
   background: #00c06d;
-    border: 1px solid;
-    border-color: #00c06d;
-    border-radius: 4px;
-    color: #fff;
-    display: block;
-    font-size: 16px;
-    height: 44px;
-    line-height: 22px;
-    margin-top: 8px;
-    padding: 0 14px;
-    width: 100%;
-    cursor: pointer;
+  border: 1px solid;
+  border-color: #00c06d;
+  border-radius: 4px;
+  color: #fff;
+  display: block;
+  font-size: 16px;
+  height: 44px;
+  line-height: 22px;
+  margin-top: 8px;
+  padding: 0 14px;
+  width: 100%;
+  cursor: pointer;
 }
 
-.text button:hover{
+.text button:hover {
   background-color: white;
   color: #00c06d;
 }

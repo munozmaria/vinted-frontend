@@ -1,13 +1,14 @@
 import { useState } from "react";
 import axios from "axios";
 
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
-library.add(faEye, faEyeSlash);
+import { faEye, faEyeSlash, faX } from "@fortawesome/free-solid-svg-icons";
 
-const Signup = ({ handleToken }) => {
+library.add(faEye, faEyeSlash, faX);
+
+const Signup = ({ handleToken, handleCloseModals, switchModals }) => {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
@@ -31,7 +32,6 @@ const Signup = ({ handleToken }) => {
     ) {
       setIdentiques(!identiques);
     } else {
-      
       fetchData();
     }
   };
@@ -48,17 +48,18 @@ const Signup = ({ handleToken }) => {
           newsletter: checkNewsletter,
         }
       );
-      console.log(response.data);
+      //console.log(response.data);
 
       //console.log(token);
-      handleToken(response.data.token);
-      
-      navigate("/");
+      if(response?.data?.token){
+        
+        handleToken(response.data.token);
+        navigate("/");
+        handleCloseModals(true)
+      }
+
     } catch (error) {
-      if (
-        error.response.data.message ===
-        "This email already has an account"
-      ) {
+      if (error.response.data.message === "This email already has an account") {
         // Je met à jour mon state errorMessage
         setErrorMessage(
           "Ce mail est déjà utilisé, veuillez en choisir un autre :)"
@@ -71,6 +72,13 @@ const Signup = ({ handleToken }) => {
 
   return (
     <div className="formulaire">
+      <i
+        className="closeModal"
+        onClick={() => {
+          handleCloseModals()
+        }}>
+        <FontAwesomeIcon icon={faX} />
+      </i>
       <div className="formContainer">
         <form
           onSubmit={(event) => {
@@ -169,7 +177,7 @@ const Signup = ({ handleToken }) => {
 
           <button type="submit">S'inscrire</button>
           {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
-          <Link to="/login">Tu as déjà un compte ? Connectes-toi !</Link>
+          <span onClick={switchModals}>Tu as déjà un compte ? Connectes-toi !</span>
         </form>
       </div>
     </div>
