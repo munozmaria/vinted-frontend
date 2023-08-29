@@ -50,7 +50,7 @@ function App() {
   const handleCloseModals = () => {
     setLoginModal(false);
     setSignupModal(false);
-    console.log("heee")
+    //console.log("heee")
   };
 
   const switchModals = () => {
