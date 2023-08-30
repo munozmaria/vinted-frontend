@@ -53,7 +53,7 @@ const Signup = ({ handleToken, handleCloseModals, switchModals }) => {
       //console.log(token);
       if(response?.data?.token){
         
-        handleToken(response.data.token);
+        handleToken(response.data.token, response.data._id);
         navigate("/");
         handleCloseModals(true)
       }

@@ -25,7 +25,7 @@ function App() {
     if (!token) {
       setLoginModal(false);
       setSignupModal(true);
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = "hidden";
     }
   };
 
@@ -33,7 +33,7 @@ function App() {
     if (!token) {
       setSignupModal(false);
       setLoginModal(true);
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = "hidden";
     }
   };
 
@@ -45,6 +45,7 @@ function App() {
       setDataId(dataId);
     } else {
       Cookies.remove("token");
+      Cookies.remove("id");
       setToken(null);
     }
   };
@@ -52,14 +53,13 @@ function App() {
   const handleCloseModals = () => {
     setLoginModal(false);
     setSignupModal(false);
-    document.body.style.overflow = 'auto';
+    document.body.style.overflow = "auto";
     //console.log("heee")
   };
 
   const switchModals = () => {
     setLoginModal(!loginModal);
     setSignupModal(!signupModal);
-   
   };
 
   return (
@@ -80,8 +80,8 @@ function App() {
           handleToken={handleToken}
           setDataId={setDataId}
           handleLoginButton={handleLoginButton}
-          handleCloseModals={()=>{
-            handleCloseModals()
+          handleCloseModals={() => {
+            handleCloseModals();
           }}
           switchModals={switchModals}
         />
@@ -111,7 +111,7 @@ function App() {
             />
           }
         />
-        <Route path="/offer/:id" element={<Offer />} />
+        <Route path="/offer/:id" element={<Offer token={token} />} />
         {/* <Route
           path="/signup"
           element={<Signup token={token} handleToken={handleToken} />}
@@ -120,8 +120,19 @@ function App() {
           path="/login"
           element={<Login handleToken={handleToken} setDataId={setDataId} />}
         /> */}
-        <Route path="/publish" element={<Publish token={token} setLoginModal={setLoginModal} />} />
-        <Route path="/payment" element={<Payment dataId={dataId}></Payment>} />
+        <Route
+          path="/publish"
+          element={<Publish token={token} setLoginModal={setLoginModal} />}
+        />
+        <Route
+          path="/payment"
+          element={
+            <Payment
+              dataId={dataId}
+              token={token}
+              setLoginModal={setLoginModal}></Payment>
+          }
+        />
       </Routes>
     </Router>
   );

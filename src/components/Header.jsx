@@ -76,7 +76,7 @@ const Header = ({
               <button
                 className="button-logout"
                 onClick={() => {
-                  handleToken(null);
+                  handleToken(null, null);
                 }}>
                 Se déconnecter
               </button>
