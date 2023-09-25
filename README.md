@@ -14,6 +14,7 @@ The production version of this project can be accessed at [Vinted](https://vinte
 
 
 ## Previews 
+https://vintedmariamr.netlify.app
 
 ![](./src/assets/gif/vinted.gif)
 
