@@ -1,6 +1,8 @@
 
 # Vinted
 
+## Description
+
 Fullstack Project: Vinted app is a simplified version of vinted website.
 The production version of this project can be accessed at [Vinted](https://vintedmariamr.netlify.app/).
 
