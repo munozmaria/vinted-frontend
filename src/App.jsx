@@ -2,15 +2,15 @@ import "./App.css";
 import { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-// Pages
-import Home from "./assets/page/Home";
-import Offer from "./assets/page/Offer";
+// pagess
+import Home from "./pages/Home";
+import Offer from "./pages/Offer";
 import Header from "./components/Header";
-import Signup from "./assets/page/Signup";
-import Login from "./assets/page/Login";
+import Signup from "./pages/Signup";
+import Login from "./pages/Login";
 import Cookies from "js-cookie";
-import Publish from "./assets/page/Publish";
-import Payment from "./assets/page/Payment";
+import Publish from "./pages/Publish";
+import Payment from "./pages/Payment";
 
 function App() {
   const [token, setToken] = useState(Cookies.get("token") || null);
