@@ -44,7 +44,7 @@ To run the Vinted App on your local machine, follow these steps:
         yarn install
 
 4. Start the application:
-  ```bash
+    ```bash
         npm start
         # or
         yarn dev
