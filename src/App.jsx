@@ -1,4 +1,4 @@
-import "./App.css";
+import "./AppWithoutMinify.css";
 import { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
@@ -97,6 +97,8 @@ function App() {
         setSearch={setSearch}
         setSortedPrice={setSortedPrice}
         sortedPrice={sortedPrice}
+        setLoginModal={setLoginModal}
+        setSignupModal={setSignupModal}
         setRangePriceOffers={setRangePriceOffers}
         rangePriceOffers={rangePriceOffers}
       />
@@ -108,18 +110,13 @@ function App() {
               rangePriceOffers={rangePriceOffers}
               search={search}
               sortedPrice={sortedPrice}
+              setSortedPrice={setSortedPrice}
+              setRangePriceOffers={setRangePriceOffers}
             />
           }
         />
         <Route path="/offer/:id" element={<Offer token={token} />} />
-        {/* <Route
-          path="/signup"
-          element={<Signup token={token} handleToken={handleToken} />}
-        /> */}
-        {/* <Route
-          path="/login"
-          element={<Login handleToken={handleToken} setDataId={setDataId} />}
-        /> */}
+       
         <Route
           path="/publish"
           element={<Publish token={token} setLoginModal={setLoginModal} />}

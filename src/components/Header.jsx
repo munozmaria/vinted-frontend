@@ -1,4 +1,4 @@
-import { Link, useNavigate, useLocation } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/img/logo.jpg";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -7,26 +7,38 @@ import {
   faEye,
   faMagnifyingGlass,
   faEyeSlash,
+  faRightFromBracket,
+  faPlus,
+  faBars,
+ 
 } from "@fortawesome/free-solid-svg-icons";
-import RangeRate from "./RangeRate";
-import SwitchPrice from "./SwitchPrice";
+import { useState } from "react";
 
-library.add(faEye, faEyeSlash, faMagnifyingGlass);
+library.add(
+  faEye,
+  faEyeSlash,
+  faMagnifyingGlass,
+  faRightFromBracket,
+  faPlus,
+  faBars
+);
 
 const Header = ({
   token,
   handleToken,
   search,
   setSearch,
-  setRangePriceOffers,
-  setSortedPrice,
+
   sortedPrice,
   handleSingupButton,
   handleLoginButton,
 }) => {
   const navigate = useNavigate();
-  const location = useLocation();
-  const currentPath = location.pathname;
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
 
   return (
     <header>
@@ -39,7 +51,7 @@ const Header = ({
           }}
         />
 
-        <div className="recherche">
+<div className="recherche">
           <FontAwesomeIcon className="magnifyGlass" icon={faMagnifyingGlass} />
           <input
             type="text"
@@ -49,45 +61,51 @@ const Header = ({
               setSearch(event.target.value);
             }}
           />
-          {currentPath === "/" && (
-            <div>
-              <SwitchPrice
-                setSortedPrice={setSortedPrice}
-                sortedPrice={sortedPrice}></SwitchPrice>
-              <RangeRate setRangePriceOffers={setRangePriceOffers}></RangeRate>
-            </div>
-          )}
         </div>
 
-        {!token ? (
-          <div>
-            {" "}
-            <button onClick={handleSingupButton} className="button-signup">
-              {" "}
-              S'inscrire
-            </button>
-            <button onClick={handleLoginButton} className="button-login">
-              Se connecter
-            </button>
-          </div>
-        ) : (
-          <div>
-            <Link to="/">
-              <button
-                className="button-logout"
-                onClick={() => {
-                  handleToken(null, null);
-                }}>
-                Se déconnecter
-              </button>
-            </Link>
-          </div>
-        )}
+        {/* Botón de hamburguesa solo visible en pantallas pequeñas */}
+        <button className="menu-button bigscreen" onClick={toggleMenu}>
+          <FontAwesomeIcon icon={faBars} />
+        </button>
+        <div className={`menu ${menuOpen ? "open" : ""}`}>
+          <div className="menuContainer">
+            {!token ? (
+              <div className="buttons">
+                <button onClick={handleSingupButton} className="button-signup">
+                  S'inscrire
+                </button>
+                <button onClick={handleLoginButton} className="button-login">
+                  Se connecter
+                </button>
+              </div>
+            ) : (
+              <div>
+                <Link to="/">
+                  <button
+                    className="button-logout"
+                    onClick={() => {
+                      handleToken(null, null);
+                    }}>
+                    <span className="button-text">Se déconnecter</span>
+                    <span className="button-icon">
+                      <FontAwesomeIcon icon={faRightFromBracket} />
+                    </span>
+                  </button>
+                </Link>
+              </div>
+            )}
 
-        <div>
-          <Link to="/publish">
-            <button className="button-shop">Vends tes articles</button>
-          </Link>
+            <div>
+              <Link to="/publish">
+                <button className="button-shop">
+                  <span className="button-text">Vends tes articles</span>
+                  <span className="button-icon">
+                    <FontAwesomeIcon icon={faPlus} />
+                  </span>
+                </button>
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
     </header>

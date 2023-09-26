@@ -48,7 +48,7 @@ const Publish = ({ token, setLoginModal }) => {
       formData.append("brand", brand);
 
       const response = await axios.post(
-        `${apiUrl}/offer/publsh`,
+        `${apiUrl}/offer/publish`,
         formData,
         {
           headers: {
