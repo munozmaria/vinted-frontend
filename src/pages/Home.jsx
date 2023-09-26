@@ -39,10 +39,10 @@ const Home = ({ search, rangePriceOffers, sortedPrice, setSortedPrice, setRangeP
 
   return isLoading ? (
     <div className="containerLoading">
-          <div class="spinner-square">
-            <div class="square-1 square"></div>
-            <div class="square-2 square"></div>
-            <div class="square-3 square"></div>
+          <div className="spinner-square">
+            <div className="square-1 square"></div>
+            <div className="square-2 square"></div>
+            <div className="square-3 square"></div>
           </div>
         </div>
   ) : (

@@ -94,7 +94,7 @@ const Publish = ({ token, setLoginModal }) => {
             <img
               className="picture-before-post"
               src={URL.createObjectURL(picture)}
-              alt="product image before post"></img>
+              alt="product before post"></img>
           )}
         </div>
         <div className="text-input-section">
