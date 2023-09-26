@@ -11,9 +11,7 @@ const SwitchPrice = ({ sortedPrice, setSortedPrice }) => {
   return (
     <label>
       <span>Trier par prix: </span>
-     
-
-      <Switch
+        <Switch
         onChange={() => {
           handleChange();
           setSortedPrice(!sortedPrice);

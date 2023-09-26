@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import {apiUrl} from "../apiConfig";
 
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -40,7 +41,7 @@ const Signup = ({ handleToken, handleCloseModals, switchModals }) => {
     try {
       setErrorMessage("");
       const response = await axios.post(
-        `https://lereacteur-vinted-api.herokuapp.com/user/signup`,
+        `${apiUrl}/user/signup`,
         {
           email: email,
           username: name,

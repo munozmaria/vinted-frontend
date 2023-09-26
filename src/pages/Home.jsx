@@ -1,30 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
 import Hero from "../components/Hero";
+import useFetch from "../hooks/useFetch";
+
 
 const Home = ({ search, rangePriceOffers, sortedPrice }) => {
-  const [data, setData] = useState({});
-  const [isLoading, setIsLoading] = useState(true);
+  const queryParams = {
+    title: search,
+    priceMin: rangePriceOffers[0],
+    priceMax: rangePriceOffers[1],
+    sort: !sortedPrice ? "price-desc" : "price-asc",
+  };
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(
-          `https://lereacteur-vinted-api.herokuapp.com/offers?title=${search}&priceMin=${rangePriceOffers[0]}&priceMax=${rangePriceOffers[1]}&sort=${
-            !sortedPrice ? "price-desc" : "price-asc"
-          }`
-        );
-        //console.log(response.data);
-        setData(response.data);
-        setIsLoading(false);
-        //console.log(data);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    fetchData();
-  }, [search, rangePriceOffers, sortedPrice]);
+  const { data, isLoading } = useFetch("offers", queryParams);
 
   return isLoading ? (
     <span>Loading... </span>
@@ -32,13 +20,12 @@ const Home = ({ search, rangePriceOffers, sortedPrice }) => {
     <>
       <Hero />
       <main className="container">
-        {data.offers.map((offer) => {
-           //console.log(offer)
-          return (
-            <div key={offer._id}>
+        {data.offers ? (
+          data.offers.map((offer) => (
+            <div key={offer._id} className="card">
               <Link to={`/offer/${offer._id}`}>
                 <article>
-                  <div>
+                  <div className="card-header">
                     {offer.owner.account.avatar && (
                       <img
                         className="avatar"
@@ -48,30 +35,32 @@ const Home = ({ search, rangePriceOffers, sortedPrice }) => {
                     )}
                     <span>{offer.owner.account.username}</span>
                   </div>
-                  <div>
+                  <div className="card-body">
                     <img
                       src={offer.product_image.secure_url}
                       alt={offer.product_name}
                     />
-                  </div>
-                  <div>
                     <p>{offer.product_price}€</p>
                     <p>{offer.product_name}</p>
-                    {offer.product_details.map((detail, index) => {
-                      if (detail.MARQUE) {
-                        return <p key={index}>{detail.MARQUE}</p>;
-                      } else if (detail.TAILLE) {
-                        return <p key={index}>{detail.TAILLE}</p>;
-                      } else {
-                        return null;
-                      }
-                    })}
+                    <div className="product-details">
+                      {offer.product_details.map((detail, index) => {
+                        if (detail.MARQUE) {
+                          return <p key={index}>{detail.MARQUE}</p>;
+                        } else if (detail.TAILLE) {
+                          return <p key={index}>{detail.TAILLE}</p>;
+                        } else {
+                          return null;
+                        }
+                      })}
+                    </div>
                   </div>
                 </article>
               </Link>
             </div>
-          );
-        })}
+          ))
+        ) : (
+          <span>No offers available</span>
+        )}
       </main>
     </>
   );

@@ -2,6 +2,7 @@ import { Link, useParams } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
+import {apiUrl} from "../apiConfig";
 
 
 const Offer = () => {
@@ -13,12 +14,10 @@ const Offer = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `https://lereacteur-vinted-api.herokuapp.com/offer/${id}`
+          `${apiUrl}/offer/${id}`
         );
-        //console.log(response.data);
         setData(response.data);
         setIsLoading(false);
-        //console.log(data);
       } catch (err) {
         console.log(err.message);
       }

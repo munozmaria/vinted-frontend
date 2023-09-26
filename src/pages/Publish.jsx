@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import {  useNavigate } from "react-router-dom";
+import {apiUrl} from "../apiConfig";
 
 
 library.add(faPlus);
@@ -47,7 +48,7 @@ const Publish = ({ token, setLoginModal }) => {
       formData.append("brand", brand);
 
       const response = await axios.post(
-        " https://lereacteur-vinted-api.herokuapp.com/offer/publish",
+        `${apiUrl}/offer/publsh`,
         formData,
         {
           headers: {

@@ -2,6 +2,8 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useState } from "react";
 
+import {apiUrl} from "../apiConfig";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faEye, faEyeSlash, faX } from "@fortawesome/free-solid-svg-icons";
@@ -15,16 +17,18 @@ const Login = ({ handleToken, handleCloseModals, switchModals }) => {
 
   const navigate = useNavigate();
 
+
+
   const fetchData = async () => {
     try {
       const response = await axios.post(
-        `https://lereacteur-vinted-api.herokuapp.com/user/login`,
+        `${apiUrl}/user/login`,
         {
           email,
           password,
         }
       );
-      //console.log(response.data);
+      console.log(response.data);
 
       handleToken(response.data.token, response.data._id);
 
