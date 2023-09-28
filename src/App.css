@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,800;1,900&display=swap');
 
 :root {
     --blue: #2baeb7;
@@ -79,6 +79,14 @@ button {
 
 
 /********** CARDS***************/
+
+.counterOffers{
+    text-align: start;
+    padding-top: 40px;
+    color: var(--blue);
+    font-weight: 600;
+}
+
 .cardContainerMain {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
@@ -118,6 +126,7 @@ button {
 }
 .card-header{
     padding: 4px 10px;
+    align-items: center;
     margin-top: 5px;
 }
 
@@ -599,7 +608,7 @@ main {
     gap: 20px;
     justify-content: space-between;
     align-items: center;
-    padding: 40px 0;
+    padding: 20px 0;
 
 
 }
@@ -1273,9 +1282,11 @@ main article img {
         display: inline-block;
     }
 
-    .filters>div {
+    .filters>div, .counterOffers {
         margin: 0 30px;
     }
+    
+ 
 
     .offre {
         padding: 2rem 0;
@@ -1371,6 +1382,9 @@ main article img {
 
     .recherche input {
         width: 100%;
+    }
+    .counterOffers{
+        padding: 40px;
     }
 
 

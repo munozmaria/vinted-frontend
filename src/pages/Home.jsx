@@ -7,6 +7,11 @@ import axios from "axios";
 import { useState } from "react";
 import SwitchPrice from "../components/SwitchPrice";
 import RangeRate from "../components/RangeRate";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { faStar } from "@fortawesome/free-solid-svg-icons";
+
+library.add(faStar);
 
 const Home = ({
   rangePriceOffers,
@@ -54,6 +59,7 @@ const Home = ({
     <>
       <Hero />
       <main className="container">
+      <span className="counterOffers"><span style={{fontSize:"25px"}}>{data.count} </span>resultats disponibles <FontAwesomeIcon icon={faStar} className="fa-beat" /></span>
         <div className="filters">
           {currentPath === "/" && (
             <div>
