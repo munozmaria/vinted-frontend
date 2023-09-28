@@ -1,13 +1,18 @@
 import { useState } from "react";
 import axios from "axios";
-import {apiUrl} from "../apiConfig";
+import { apiUrl } from "../apiConfig";
 
 import Dropzone from "react-dropzone";
 
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faEye, faEyeSlash, faX, faCamera } from "@fortawesome/free-solid-svg-icons";
+import {
+  faEye,
+  faEyeSlash,
+  faX,
+  faCamera,
+} from "@fortawesome/free-solid-svg-icons";
 
 library.add(faEye, faEyeSlash, faX, faCamera);
 
@@ -51,33 +56,24 @@ const Signup = ({ handleToken, handleCloseModals, switchModals }) => {
       formData.append("email", email);
       formData.append("password", password);
 
-      const response = await axios.post(
-        `${apiUrl}/user/signup`,
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
+      const response = await axios.post(`${apiUrl}/user/signup`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
 
-
-
-   
       //console.log(response.data);
 
-
-      if(response?.data?.token){
-        
+      if (response?.data?.token) {
         handleToken(response.data.token, response.data._id);
         navigate("/");
-        handleCloseModals(true)
+        handleCloseModals(true);
       }
-
     } catch (error) {
-      if(error.message) {
-
-        if (error.response.data.message === "This email already has an account") {
+      if (error.message) {
+        if (
+          error.response.data.message === "This email already has an account"
+        ) {
           // Je met à jour mon state errorMessage
           setErrorMessage(
             "Ce mail est déjà utilisé, veuillez en choisir un autre :)"
@@ -85,18 +81,13 @@ const Signup = ({ handleToken, handleCloseModals, switchModals }) => {
         } else if (error.response.data.message === "Missing parameters") {
           setErrorMessage("Veuillez remplir tous les champs :)");
         }
-
-
-      }else {
-      
+      } else {
         console.error(error);
       }
     }
   };
 
-
   const onDrop = (acceptedFiles) => {
-   
     if (acceptedFiles.length > 0) {
       setAvatar(acceptedFiles[0]);
       setAvatarUrl(URL.createObjectURL(acceptedFiles[0]));
@@ -108,32 +99,31 @@ const Signup = ({ handleToken, handleCloseModals, switchModals }) => {
       <i
         className="closeModal"
         onClick={() => {
-          handleCloseModals()
+          handleCloseModals();
         }}>
         <FontAwesomeIcon icon={faX} />
       </i>
       <div className="formContainer">
-    
         <form
           onSubmit={(event) => {
             handleSignup(event);
           }}>
           <h1>S'inscrire</h1>
           {!avatar ? (
-          <Dropzone onDrop={onDrop}>
-            {({ getRootProps, getInputProps }) => (
-              <div {...getRootProps()} className="userAvatar dropzone">
-                <input {...getInputProps()} />
-                <p className="choose">Choose your avatar</p>
-                <FontAwesomeIcon className="faCamera" icon={faCamera} />
-              </div>
-            )}
-          </Dropzone>
-        ) : (
-          <div className="userAvatar">
-            <img src={avatarUrl} alt="profile" />
-          </div>
-        )}
+            <Dropzone onDrop={onDrop}>
+              {({ getRootProps, getInputProps }) => (
+                <div {...getRootProps()} className="userAvatar dropzone">
+                  <input {...getInputProps()} />
+                  <p className="choose">Choose your avatar</p>
+                  <FontAwesomeIcon className="faCamera" icon={faCamera} />
+                </div>
+              )}
+            </Dropzone>
+          ) : (
+            <div className="userAvatar">
+              <img src={avatarUrl} alt="profile" />
+            </div>
+          )}
           <input
             id="name"
             type="text"

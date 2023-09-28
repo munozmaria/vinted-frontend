@@ -77,8 +77,8 @@ const Publish = ({ token, setLoginModal }) => {
         <div className="picture-section">
           <div className="selectPicture">
             <label htmlFor="file" className="label-file">
-              <FontAwesomeIcon icon={faPlus} />
-              <span>Ajoute une photo</span>
+             
+              <span>Photo</span>
             </label>
             <input
               className="input-file"
