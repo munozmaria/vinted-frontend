@@ -95,7 +95,8 @@ const Home = ({
                         src={offer.product_image.secure_url}
                         alt={offer.product_name}
                       />
-                      <div>
+                    </div>
+                      <div className="card-footer">
                         <p style={{ fontWeight: "bold", paddingTop: "30px" }}>
                           {offer.product_price}€
                         </p>
@@ -103,7 +104,6 @@ const Home = ({
                           {offer.product_name}
                         </p>
                       </div>
-                    </div>
                   </div>
                 </Link>
               );
