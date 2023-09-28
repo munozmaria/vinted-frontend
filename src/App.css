@@ -269,7 +269,6 @@ header {
     left: 0;
     width: 100%;
     background-color: white;
-    padding: 1rem;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
     z-index: 1000;
 
@@ -307,6 +306,10 @@ header .container>div:nth-child(3) {
     cursor: pointer;
 }
 
+.button-signup:hover, .button-login:hover{
+    box-shadow: 5px 5px 5px -4px rgba(23, 172, 229, 0.52);
+}
+
 .button-shop {
     background-color: var(--blue);
     padding: 10px 20px;
@@ -318,7 +321,7 @@ header .container>div:nth-child(3) {
 }
 
 .button-shop:hover {
-    box-shadow: 10px 10px 19px -4px rgba(23, 172, 229, 0.52);
+    box-shadow: 5px 5px 5px -4px rgba(23, 172, 229, 0.52);
 }
 
 .button-icon {
@@ -357,7 +360,7 @@ header .container>div:nth-child(3) {
     height: 37px;
     outline: none;
     padding-left: 40px;
-    width: 590px;
+    width: 300px;
     margin-right: 20px;
 
 }
@@ -419,7 +422,7 @@ header .container>div:nth-child(3) {
     height: 455px;
     position: relative;
     width: 100%;
-    margin-top: 105px;
+    margin-top: 70px;
 }
 
 .hero>div {
@@ -492,7 +495,7 @@ header .container>div:nth-child(3) {
     }
 
     .btn {
-        height: 60px;
+        height: 38px;
     }
 
     .menu {
@@ -518,6 +521,7 @@ header .container>div:nth-child(3) {
         cursor: pointer;
         font-size: 24px;
         padding: 0;
+        margin-right: 10px;
     }
 
     .menuContainer {
@@ -570,7 +574,7 @@ main {
 .filters>div {
     display: flex;
     gap: 20px;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
     padding: 40px 0;
 
@@ -1011,7 +1015,6 @@ main article img {
 
 /*=================================PAYMENT=================================*/
 .payment-wrapper {
-    background-color: #ebedee;
     height: 100vh;
     padding-top: 10rem;
 }
@@ -1020,6 +1023,7 @@ main article img {
     margin: 0 auto;
     padding: 36px 20px;
     width: 600px;
+    background-color: var(--blue);
 }
 
 .payment-card {
@@ -1103,9 +1107,9 @@ main article img {
 }
 
 .text button {
-    background: #00c06d;
+    background: var(--blue);
     border: 1px solid;
-    border-color: #00c06d;
+    border-color: var(--blue);
     border-radius: 4px;
     color: #fff;
     display: block;
@@ -1120,7 +1124,7 @@ main article img {
 
 .text button:hover {
     background-color: white;
-    color: #00c06d;
+    color: var(--blue);
 }
 
 
@@ -1211,7 +1215,7 @@ main article img {
     }
 
     .hero {
-        margin-top: 72px;
+        margin-top: 42px;
     }
 
     .hero-ready {
@@ -1247,7 +1251,7 @@ main article img {
     }
 
     .offre {
-        padding: 5rem 0;
+        padding: 2rem 0;
     }
 
     .offre article {
@@ -1301,11 +1305,11 @@ main article img {
 
 @media (max-width: 768px) {
     .offre {
-        margin-top: 4rem !important;
+        margin-top: 20px;
     }
 
     header {
-        padding: 1rem;
+   
         flex-direction: column;
 
     }
@@ -1331,6 +1335,9 @@ main article img {
 
 
 @media (max-width: 480px) {
+    .rangePrice{
+        width: 50%!important;
+    }
     header img {
         width: 60px;
     }

@@ -18,11 +18,12 @@ const RangeRate = ({ setRangePriceOffers }) => {
         // console.log(children);
         return (
           <div
+          className="rangePrice"
             style={{
               ...props.style,
               height: "36px",
               display: "flex",
-              width: "50%",
+              width: "30%",
             }}>
             <div key={props.id}
               {...props}
