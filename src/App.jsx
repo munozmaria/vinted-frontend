@@ -14,7 +14,7 @@ import Payment from "./pages/Payment";
 function App() {
   const [token, setToken] = useState(Cookies.get("token") || null);
   const [rangePriceOffers, setRangePriceOffers] = useState([0, 10000]);
-  const [search, setSearch] = useState("");
+  const [productDetailsSearch, setProductDetailsSearch] = useState("");
   const [sortedPrice, setSortedPrice] = useState("price-asc");
   const [dataId, setDataId] = useState("");
   const [signupModal, setSignupModal] = useState(false);
@@ -92,8 +92,8 @@ function App() {
         handleLoginButton={handleLoginButton}
         token={token}
         handleToken={handleToken}
-        search={search}
-        setSearch={setSearch}
+        productDetailsSearch={productDetailsSearch}
+        setProductDetailsSearch={setProductDetailsSearch}
         setSortedPrice={setSortedPrice}
         sortedPrice={sortedPrice}
         setLoginModal={setLoginModal}
@@ -107,15 +107,16 @@ function App() {
           element={
             <Home
               rangePriceOffers={rangePriceOffers}
-              search={search}
               sortedPrice={sortedPrice}
               setSortedPrice={setSortedPrice}
+              productDetailsSearch={productDetailsSearch}
+              setProductDetailsSearch={setProductDetailsSearch}
               setRangePriceOffers={setRangePriceOffers}
             />
           }
         />
         <Route path="/offer/:id" element={<Offer token={token} />} />
-       
+
         <Route
           path="/publish"
           element={<Publish token={token} setLoginModal={setLoginModal} />}

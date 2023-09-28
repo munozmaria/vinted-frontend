@@ -27,8 +27,8 @@ library.add(
 const Header = ({
   token,
   handleToken,
-  search,
-  setSearch,
+  productDetailsSearch,
+  setProductDetailsSearch,
   handleSingupButton,
   handleLoginButton,
 }) => {
@@ -54,10 +54,11 @@ const Header = ({
           <FontAwesomeIcon className="magnifyGlass" icon={faMagnifyingGlass} />
           <input
             type="text"
-            value={search}
+            value={productDetailsSearch}
             placeholder="Rechercher des articles"
             onChange={(event) => {
-              setSearch(event.target.value);
+              console.log(event.target.value)
+              setProductDetailsSearch(event.target.value)
             }}
           />
         </div>

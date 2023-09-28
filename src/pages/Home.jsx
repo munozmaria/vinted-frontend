@@ -14,9 +14,11 @@ const Home = ({
   sortedPrice,
   setSortedPrice,
   setRangePriceOffers,
+  productDetailsSearch
 }) => {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+ 
   const location = useLocation();
   const currentPath = location.pathname;
 
@@ -24,11 +26,11 @@ const Home = ({
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `${apiUrl}/offers?title=${search}&priceMin=${
+          `${apiUrl}/offers?priceMin=${
             rangePriceOffers[0]
           }&priceMax=${rangePriceOffers[1]}&sort=${
             !sortedPrice ? "price-desc" : "price-asc"
-          }`
+          }&productDetailsSearch=${productDetailsSearch}`
         );
         //console.log(response);
         setData(response.data);
@@ -39,7 +41,7 @@ const Home = ({
       }
     };
     fetchData();
-  }, [search, rangePriceOffers, sortedPrice]);
+  }, [search, rangePriceOffers, sortedPrice, productDetailsSearch]);
 
   //console.log(data)
 
@@ -81,29 +83,33 @@ const Home = ({
                             alt={offer.owner.account.username}
                           />
                         ) : (
-                          <img
-                            className="avatar"
-                            src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50"
-                            alt={offer.owner.account.username}
-                          />
+                          <div className="avatar-placeholder">
+                            <span className="avatar-letter">
+                              {offer.owner.account.username.charAt(0)}
+                            </span>
+                          </div>
                         )}
                         <span>{offer.owner.account.username}</span>
                       </div>
                     )}
+
                     <div className="card-body">
                       <img
                         src={offer.product_image.secure_url}
                         alt={offer.product_name}
                       />
                     </div>
-                      <div className="card-footer">
-                        <span style={{ fontWeight: "bold", paddingTop: "30px" }}>
-                          {offer.product_price}€
-                        </span>
+                    <div className="card-footer">
+                      <span style={{ fontWeight: "bold", paddingTop: "30px" }}>
+                        {offer.product_price}€
+                      </span>
+                      <div style={{display: "flex", flexDirection:"column", gap: "10px"}}>
                         <p style={{ fontStyle: "italic" }}>
                           {offer.product_name}
                         </p>
+                        <span style={{fontWeight:"bold", color:"#2baeb7"}}>{offer.product_details[0].MARQUE}</span>
                       </div>
+                    </div>
                   </div>
                 </Link>
               );
