@@ -87,7 +87,7 @@ button {
 /********** CARDS***************/
 .card {
     background-color: #fff;
-    border-radius: 8px;
+    border-radius: 3px;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
     margin-bottom: 20px;
     display: flex;
@@ -1206,7 +1206,7 @@ main article img {
 
 
 @media (max-width: 998px) {
-    .card {
+    .cardContainerMain {
         margin: 15px;
     }
 
