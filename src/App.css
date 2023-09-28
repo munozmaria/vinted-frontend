@@ -17,7 +17,7 @@ button {
 }
 
 .container {
-    max-width: 1000px;
+    max-width: 1280px;
     margin: 0 auto;
     text-align: center;
 
@@ -77,14 +77,15 @@ button {
 }
 
 
-.cardContainerMain {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 1em;
-}
 
 
 /********** CARDS***************/
+.cardContainerMain {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    gap: 1em;
+   
+}
 .card {
     background-color: #fff;
     border-radius: 3px;
@@ -1138,9 +1139,14 @@ main article img {
     .publish {
         margin: 30px;
     }
+    .container{
+        margin: 0 15px;
+    }
 }
 
 @media (max-width: 768px) {
+
+
 
     .publish-container {
 
@@ -1213,9 +1219,8 @@ main article img {
 
 
 @media (max-width: 998px) {
-    .cardContainerMain {
-        margin: 15px;
-    }
+
+    
 
     .hero {
         margin-top: 42px;
