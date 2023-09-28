@@ -9,7 +9,6 @@ import SwitchPrice from "../components/SwitchPrice";
 import RangeRate from "../components/RangeRate";
 
 const Home = ({
-  search,
   rangePriceOffers,
   sortedPrice,
   setSortedPrice,
@@ -41,9 +40,9 @@ const Home = ({
       }
     };
     fetchData();
-  }, [search, rangePriceOffers, sortedPrice, productDetailsSearch]);
+  }, [ rangePriceOffers, sortedPrice, productDetailsSearch]);
 
-  //console.log(data)
+ 
 
   return isLoading ? (
     <div className="containerLoading">

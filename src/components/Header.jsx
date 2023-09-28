@@ -39,15 +39,17 @@ const Header = ({
     setMenuOpen(!menuOpen);
   };
 
+  const handleImageClick = () => {
+     window.location.href = "/";
+  };
+
   return (
     <header>
       <div className="container">
         <img
           src={logo}
           alt=""
-          onClick={() => {
-            navigate("/");
-          }}
+          onClick={handleImageClick}
         />
 
         <div className="recherche">
@@ -57,7 +59,7 @@ const Header = ({
             value={productDetailsSearch}
             placeholder="Rechercher des articles"
             onChange={(event) => {
-              console.log(event.target.value)
+              //console.log(event.target.value)
               setProductDetailsSearch(event.target.value)
             }}
           />
