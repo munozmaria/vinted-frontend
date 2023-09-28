@@ -3,6 +3,7 @@ import axios from "axios";
 import { apiUrl } from "../apiConfig";
 
 import Dropzone from "react-dropzone";
+import { toast } from "react-toastify";
 
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -32,7 +33,7 @@ const Signup = ({ handleToken, handleCloseModals, switchModals }) => {
 
   const navigate = useNavigate();
 
-  const handleSignup = (event) => {
+  const handleSignup = async (event) => {
     event.preventDefault();
 
     if (
@@ -40,52 +41,50 @@ const Signup = ({ handleToken, handleCloseModals, switchModals }) => {
       password === "" ||
       confirmPassword === ""
     ) {
-      setIdentiques(!identiques);
+      setIdentiques(!identiques)
+    }else if (!avatar) {
+        toast.error('Vous devez choisir une image.');
+      
     } else {
-      fetchData();
-    }
-  };
-
-  const fetchData = async () => {
-    try {
-      setErrorMessage("");
-      const formData = new FormData();
-      formData.append("avatar", avatar);
-      formData.append("username", name);
-      formData.append("newsletter", checkNewsletter);
-      formData.append("email", email);
-      formData.append("password", password);
-
-      const response = await axios.post(`${apiUrl}/user/signup`, formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
-
-      //console.log(response.data);
-
-      if (response?.data?.token) {
-        handleToken(response.data.token, response.data._id);
-        navigate("/");
-        handleCloseModals(true);
-      }
-    } catch (error) {
-      if (error.message) {
-        if (
-          error.response.data.message === "This email already has an account"
-        ) {
-          // Je met à jour mon state errorMessage
-          setErrorMessage(
-            "Ce mail est déjà utilisé, veuillez en choisir un autre :)"
-          );
-        } else if (error.response.data.message === "Missing parameters") {
-          setErrorMessage("Veuillez remplir tous les champs :)");
+      try {
+        setErrorMessage("");
+        const formData = new FormData();
+        formData.append("avatar", avatar);
+        formData.append("username", name);
+        formData.append("newsletter", checkNewsletter);
+        formData.append("email", email);
+        formData.append("password", password);
+  
+        const response = await axios.post(`${apiUrl}/user/signup`, formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        });
+  
+        //console.log(response.data);
+  
+        if (response?.data?.token) {
+          handleToken(response.data.token, response.data._id);
+          navigate("/");
+          handleCloseModals(true);
         }
-      } else {
-        console.error(error);
+      } catch (error) {
+        if (error.response) {
+          if (error.response.data.message === "This email already has an account") {
+            toast.error("Ce mail est déjà utilisé, veuillez en choisir un autre");
+          } else if (error.response.data.message === "Missing parameters") {
+            toast.error("Veuillez remplir tous les champs");
+          } else {
+            console.error(error);
+          }
+        } else {
+          console.error(error);
+        }
       }
     }
   };
+
+
 
   const onDrop = (acceptedFiles) => {
     if (acceptedFiles.length > 0) {

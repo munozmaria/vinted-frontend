@@ -11,6 +11,9 @@ import Cookies from "js-cookie";
 import Publish from "./pages/Publish";
 import Payment from "./pages/Payment";
 
+import { ToastContainer} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 function App() {
   const [token, setToken] = useState(Cookies.get("token") || null);
   const [rangePriceOffers, setRangePriceOffers] = useState([0, 10000]);
@@ -131,6 +134,7 @@ function App() {
           }
         />
       </Routes>
+      <ToastContainer />
     </Router>
   );
 }

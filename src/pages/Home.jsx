@@ -76,7 +76,7 @@ const Home = ({
         <div className="cardContainerMain">
           {data.offers &&
             data.offers.map((offer) => {
-              console.log(offer);
+             // console.log(offer);
               return (
                 <Link key={offer._id} to={`/offer/${offer._id}`}>
                   <div className="card">
@@ -89,10 +89,9 @@ const Home = ({
                             alt={offer.owner.account.username}
                           />
                         ) : (
-                          <div className="avatar-placeholder">
-                            <span className="avatar-letter">
+                          <div className="image-not-available">
                               {offer.owner.account.username.charAt(0)}
-                            </span>
+                           
                           </div>
                         )}
                         <span>{offer.owner.account.username}</span>

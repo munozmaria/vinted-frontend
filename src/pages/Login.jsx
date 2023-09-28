@@ -2,7 +2,8 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useState } from "react";
 
-import {apiUrl} from "../apiConfig";
+import { apiUrl } from "../apiConfig";
+import { toast } from "react-toastify";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -17,30 +18,26 @@ const Login = ({ handleToken, handleCloseModals, switchModals }) => {
 
   const navigate = useNavigate();
 
-
-
   const fetchData = async () => {
     try {
-      const response = await axios.post(
-        `${apiUrl}/user/login`,
-        {
-          email,
-          password,
-        }
-      );
-      console.log(response.data);
+      const response = await axios.post(`${apiUrl}/user/login`, {
+        email,
+        password,
+      });
+      //console.log(response.data);
 
       handleToken(response.data.token, response.data._id);
 
       if (response.data.token) {
-        navigate("/publish");
-        handleCloseModals(true)
-        
+        navigate("/");
+        handleCloseModals(true);
+        toast.success(`Vous êtes connecté`);
       } else {
         alert("Une erreur est survenue, veuillez réssayer.");
       }
     } catch (err) {
-      console.log(err);
+      toast.error(err.response?.data?.message || "Bad Request.");
+      console.error(err);
     }
   };
 
