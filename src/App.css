@@ -130,6 +130,7 @@ button {
     object-fit: cover;
     border-radius: 50%;
     margin-right: 10px;
+    border: 2px solid var(--blue);
 }
 
 
@@ -268,7 +269,7 @@ header {
     left: 0;
     width: 100%;
     background-color: white;
-    padding: 2rem;
+    padding: 1rem;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
     z-index: 1000;
 
@@ -418,7 +419,7 @@ header .container>div:nth-child(3) {
     height: 455px;
     position: relative;
     width: 100%;
-    margin-top: 125px;
+    margin-top: 105px;
 }
 
 .hero>div {
@@ -612,9 +613,8 @@ main article img {
 
 .offre {
 
-    background-color: #ebedee;
     height: 100vh;
-    margin-top: 7rem;
+    margin-top: 6rem;
 
 }
 
@@ -644,7 +644,7 @@ main article img {
 }
 
 .offre-details {
-    background-color: #fff;
+    background-color: #cce8ea;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -815,8 +815,8 @@ main article img {
 /*================================ PUBLISH =================================================================*/
 
 .publish-container {
-    background-color: #EBEDEE;
-    padding-top: 10rem;
+   
+    padding-top: 6rem;
 }
 
 .publish {

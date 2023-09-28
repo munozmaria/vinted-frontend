@@ -68,7 +68,7 @@ const Home = ({
         <div className="cardContainerMain">
           {data.offers &&
             data.offers.map((offer) => {
-              console.log(offer);
+              //console.log(offer);
               return (
                 <Link key={offer._id} to={`/offer/${offer._id}`}>
                   <div className="card">
