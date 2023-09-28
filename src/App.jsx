@@ -121,7 +121,7 @@ function App() {
           path="/publish"
           element={<Publish token={token} setLoginModal={setLoginModal} />}
         />
-        {/* <Route
+        <Route
           path="/payment"
           element={
             <Payment
@@ -129,7 +129,7 @@ function App() {
               token={token}
               setLoginModal={setLoginModal}></Payment>
           }
-        /> */}
+        />
       </Routes>
     </Router>
   );
