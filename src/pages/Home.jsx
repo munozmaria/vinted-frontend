@@ -59,7 +59,10 @@ const Home = ({
     <>
       <Hero />
       <main className="container">
-      <span className="counterOffers"><span style={{fontSize:"25px"}}>{data.count} </span>resultats disponibles <FontAwesomeIcon icon={faStar} className="fa-beat" /></span>
+        <span className="counterOffers">
+          <span style={{ fontSize: "24px" }}>{data.count} </span>resultats
+          disponibles <FontAwesomeIcon icon={faStar} className="fa-beat" />
+        </span>
         <div className="filters">
           {currentPath === "/" && (
             <div>
@@ -73,7 +76,7 @@ const Home = ({
         <div className="cardContainerMain">
           {data.offers &&
             data.offers.map((offer) => {
-              //console.log(offer);
+              console.log(offer);
               return (
                 <Link key={offer._id} to={`/offer/${offer._id}`}>
                   <div className="card">
@@ -97,10 +100,16 @@ const Home = ({
                     )}
 
                     <div className="card-body">
-                      <img
-                        src={offer.product_image.secure_url}
-                        alt={offer.product_name}
-                      />
+                      {offer.product_image ? (
+                        <img
+                          src={offer.product_image.secure_url}
+                          alt={offer.product_name}
+                        />
+                      ) : (
+                        <div className="image-not-available">
+                          {offer.product_details[0]?.MARQUE}
+                        </div>
+                      )}
                     </div>
                     <div className="card-footer">
                       <span style={{ fontWeight: "bold", paddingTop: "30px" }}>
@@ -119,10 +128,7 @@ const Home = ({
                           <span style={{ fontWeight: "bold" }}>
                             {offer.product_details[0].MARQUE}
                           </span>
-                          /
-                          <span>
-                            {offer.product_details[4].EMPLACEMENT}
-                          </span>
+                          /<span>{offer.product_details[4].EMPLACEMENT}</span>
                         </div>
                       </div>
                     </div>

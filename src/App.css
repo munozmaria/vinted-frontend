@@ -198,6 +198,18 @@ button {
     text-transform: uppercase; 
   }
 
+  .image-not-available {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    color: var(--blue);
+    font-size: 24px; 
+    font-weight: bold; 
+  }
+  
+
 
 /****Loading****/
 

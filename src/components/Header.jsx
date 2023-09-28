@@ -39,17 +39,13 @@ const Header = ({
   };
 
   const handleImageClick = () => {
-     window.location.href = "/";
+    window.location.href = "/";
   };
 
   return (
     <header>
       <div className="container">
-        <img
-          src={logo}
-          alt=""
-          onClick={handleImageClick}
-        />
+        <img src={logo} alt="" onClick={handleImageClick} />
 
         <div className="recherche">
           <FontAwesomeIcon className="magnifyGlass" icon={faMagnifyingGlass} />
@@ -59,7 +55,7 @@ const Header = ({
             placeholder="Rechercher des articles"
             onChange={(event) => {
               //console.log(event.target.value)
-              setProductDetailsSearch(event.target.value)
+              setProductDetailsSearch(event.target.value);
             }}
           />
         </div>
@@ -71,7 +67,9 @@ const Header = ({
           <div className="menuContainer">
             {!token ? (
               <div className="buttons">
-                <button onClick={handleSingupButton} className="button-signup btn">
+                <button
+                  onClick={handleSingupButton}
+                  className="button-signup btn">
                   S'inscrire
                 </button>
                 <button onClick={handleLoginButton} className="button-login">
@@ -105,16 +103,18 @@ const Header = ({
                 </button>
               </Link>
             </div>
-            <div>
-              <Link to="/profile">
-                <button className="button-shop btn">
-                  <span className="button-text">Profile</span>
-                  <span className="button-icon">
-                    <FontAwesomeIcon icon={faUser} />
-                  </span>
-                </button>
-              </Link>
-            </div>
+            {token ? (
+              <div>
+                <Link to="/profile">
+                  <button className="button-shop btn">
+                    <span className="button-text">Profile</span>
+                    <span className="button-icon">
+                      <FontAwesomeIcon icon={faUser} />
+                    </span>
+                  </button>
+                </Link>
+              </div>
+            ) : null}
           </div>
         </div>
       </div>
