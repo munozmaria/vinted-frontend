@@ -97,9 +97,9 @@ const Home = ({
                       />
                     </div>
                       <div className="card-footer">
-                        <p style={{ fontWeight: "bold", paddingTop: "30px" }}>
+                        <span style={{ fontWeight: "bold", paddingTop: "30px" }}>
                           {offer.product_price}€
-                        </p>
+                        </span>
                         <p style={{ fontStyle: "italic" }}>
                           {offer.product_name}
                         </p>
