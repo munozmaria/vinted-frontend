@@ -10,7 +10,7 @@ import {
   faRightFromBracket,
   faPlus,
   faBars,
- 
+  faUser,
 } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 
@@ -20,7 +20,8 @@ library.add(
   faMagnifyingGlass,
   faRightFromBracket,
   faPlus,
-  faBars
+  faBars,
+  faUser
 );
 
 const Header = ({
@@ -28,8 +29,6 @@ const Header = ({
   handleToken,
   search,
   setSearch,
-
-  sortedPrice,
   handleSingupButton,
   handleLoginButton,
 }) => {
@@ -51,7 +50,7 @@ const Header = ({
           }}
         />
 
-<div className="recherche">
+        <div className="recherche">
           <FontAwesomeIcon className="magnifyGlass" icon={faMagnifyingGlass} />
           <input
             type="text"
@@ -63,7 +62,6 @@ const Header = ({
           />
         </div>
 
-        {/* Botón de hamburguesa solo visible en pantallas pequeñas */}
         <button className="menu-button bigscreen" onClick={toggleMenu}>
           <FontAwesomeIcon icon={faBars} />
         </button>
@@ -71,7 +69,7 @@ const Header = ({
           <div className="menuContainer">
             {!token ? (
               <div className="buttons">
-                <button onClick={handleSingupButton} className="button-signup">
+                <button onClick={handleSingupButton} className="button-signup btn">
                   S'inscrire
                 </button>
                 <button onClick={handleLoginButton} className="button-login">
@@ -82,7 +80,7 @@ const Header = ({
               <div>
                 <Link to="/">
                   <button
-                    className="button-logout"
+                    className="button-logout btn"
                     onClick={() => {
                       handleToken(null, null);
                     }}>
@@ -97,10 +95,20 @@ const Header = ({
 
             <div>
               <Link to="/publish">
-                <button className="button-shop">
-                  <span className="button-text">Vends tes articles</span>
+                <button className="button-shop btn">
+                  <span className="button-text">Vendre</span>
                   <span className="button-icon">
                     <FontAwesomeIcon icon={faPlus} />
+                  </span>
+                </button>
+              </Link>
+            </div>
+            <div>
+              <Link to="/profile">
+                <button className="button-shop btn">
+                  <span className="button-text">Profile</span>
+                  <span className="button-icon">
+                    <FontAwesomeIcon icon={faUser} />
                   </span>
                 </button>
               </Link>

@@ -8,7 +8,13 @@ import { useState } from "react";
 import SwitchPrice from "../components/SwitchPrice";
 import RangeRate from "../components/RangeRate";
 
-const Home = ({ search, rangePriceOffers, sortedPrice, setSortedPrice, setRangePriceOffers }) => {
+const Home = ({
+  search,
+  rangePriceOffers,
+  sortedPrice,
+  setSortedPrice,
+  setRangePriceOffers,
+}) => {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const location = useLocation();
@@ -39,19 +45,18 @@ const Home = ({ search, rangePriceOffers, sortedPrice, setSortedPrice, setRangeP
 
   return isLoading ? (
     <div className="containerLoading">
-          <div className="spinner-square">
-            <div className="square-1 square"></div>
-            <div className="square-2 square"></div>
-            <div className="square-3 square"></div>
-          </div>
-        </div>
+      <div className="spinner-square">
+        <div className="square-1 square"></div>
+        <div className="square-2 square"></div>
+        <div className="square-3 square"></div>
+      </div>
+    </div>
   ) : (
     <>
- 
       <Hero />
       <main className="container">
         <div className="filters">
-      {currentPath === "/" && (
+          {currentPath === "/" && (
             <div>
               <SwitchPrice
                 setSortedPrice={setSortedPrice}
@@ -59,17 +64,14 @@ const Home = ({ search, rangePriceOffers, sortedPrice, setSortedPrice, setRangeP
               <RangeRate setRangePriceOffers={setRangePriceOffers}></RangeRate>
             </div>
           )}
-
         </div>
         <div className="cardContainerMain">
-
-        {data.offers && (
-          data.offers.map((offer) => {
-            //console.log(offer);
-            return (
-              <div key={offer._id} className="card">
-                <Link to={`/offer/${offer._id}`}>
-                  <article>
+          {data.offers &&
+            data.offers.map((offer) => {
+              //console.log(offer);
+              return (
+                <Link key={offer._id} to={`/offer/${offer._id}`}>
+                  <div className="card">
                     {offer.owner && offer.owner.account && (
                       <div className="card-header">
                         {offer.owner.account.avatar ? (
@@ -93,16 +95,19 @@ const Home = ({ search, rangePriceOffers, sortedPrice, setSortedPrice, setRangeP
                         src={offer.product_image.secure_url}
                         alt={offer.product_name}
                       />
-                      <p style={{fontWeight: "bold", paddingTop :"30px"}}>{offer.product_price}€</p>
-                      <p style={{fontStyle:"italic"}}>{offer.product_name}</p>
-                   
+                      <div>
+                        <p style={{ fontWeight: "bold", paddingTop: "30px" }}>
+                          {offer.product_price}€
+                        </p>
+                        <p style={{ fontStyle: "italic" }}>
+                          {offer.product_name}
+                        </p>
+                      </div>
                     </div>
-                  </article>
+                  </div>
                 </Link>
-              </div>
-            );
-          })
-        )}
+              );
+            })}
         </div>
       </main>
     </>
