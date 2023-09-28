@@ -46,6 +46,8 @@ const Publish = ({ token, setLoginModal }) => {
       formData.append("city", city);
       formData.append("brand", brand);
 
+      
+
       const response = await axios.post(
         `${apiUrl}/offer/publish`,
         formData,

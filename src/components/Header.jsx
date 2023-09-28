@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import logo from "../assets/img/logo.jpg";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -32,7 +32,6 @@ const Header = ({
   handleSingupButton,
   handleLoginButton,
 }) => {
-  const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
 
   const toggleMenu = () => {

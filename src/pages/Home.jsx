@@ -13,11 +13,11 @@ const Home = ({
   sortedPrice,
   setSortedPrice,
   setRangePriceOffers,
-  productDetailsSearch
+  productDetailsSearch,
 }) => {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
- 
+
   const location = useLocation();
   const currentPath = location.pathname;
 
@@ -25,9 +25,9 @@ const Home = ({
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `${apiUrl}/offers?priceMin=${
-            rangePriceOffers[0]
-          }&priceMax=${rangePriceOffers[1]}&sort=${
+          `${apiUrl}/offers?priceMin=${rangePriceOffers[0]}&priceMax=${
+            rangePriceOffers[1]
+          }&sort=${
             !sortedPrice ? "price-desc" : "price-asc"
           }&productDetailsSearch=${productDetailsSearch}`
         );
@@ -40,9 +40,7 @@ const Home = ({
       }
     };
     fetchData();
-  }, [ rangePriceOffers, sortedPrice, productDetailsSearch]);
-
- 
+  }, [rangePriceOffers, sortedPrice, productDetailsSearch]);
 
   return isLoading ? (
     <div className="containerLoading">
@@ -102,11 +100,24 @@ const Home = ({
                       <span style={{ fontWeight: "bold", paddingTop: "30px" }}>
                         {offer.product_price}€
                       </span>
-                      <div style={{display: "flex", flexDirection:"column", gap: "10px"}}>
-                        <p style={{ fontStyle: "italic" }}>
+                      <div
+                        style={{
+                          display: "flex",
+                          flexDirection: "column",
+                          gap: "10px",
+                        }}>
+                        <p style={{ fontWeight: "bold", color: "#2baeb7" }}>
                           {offer.product_name}
                         </p>
-                        <span style={{fontWeight:"bold", color:"#2baeb7"}}>{offer.product_details[0].MARQUE}</span>
+                        <div>
+                          <span style={{ fontWeight: "bold" }}>
+                            {offer.product_details[0].MARQUE}
+                          </span>
+                          /
+                          <span>
+                            {offer.product_details[4].EMPLACEMENT}
+                          </span>
+                        </div>
                       </div>
                     </div>
                   </div>
