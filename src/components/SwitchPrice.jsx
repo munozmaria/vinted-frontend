@@ -6,20 +6,16 @@ const SwitchPrice = ({ sortedPrice, setSortedPrice }) => {
 
   const handleChange = () => {
     setChecked(!checked);
+    setSortedPrice(!sortedPrice);
   };
 
   return (
     <label>
       <span>Trier par prix: </span>
-        <Switch
-        onChange={() => {
-          handleChange();
-          setSortedPrice(!sortedPrice);
-        }}
+      <Switch
+        onChange={handleChange}
         checked={checked}
-      
-        className={checked? "react-switch-handle::after" : "react-switch-handle::before"}
-        
+        className={`custom-switch ${checked ? "checked" : ""}`}
       />
 
 
