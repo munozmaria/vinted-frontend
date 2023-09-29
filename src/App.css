@@ -27,44 +27,25 @@ button {
 
 /******* SIGNUP********/
 
-.userAvatar {
-
-
-    align-self: center;
+.faCamera {
+   
     border-radius: 10px;
     text-align: center;
-    font-size: 16px;
-    color: white;
+    font-size: 20px;
+     width: 100%;
     display: flex;
+    color: var(--blue);
     align-items: center;
     justify-content: center;
     font-weight: bold;
     flex-direction: column;
     padding: 8px;
-    border: 1px solid #2baeb7;
-}
-
-.choose {
-    transition: display 0.5s ease;
-    display: block;
-    margin-top: 0 !important;
-}
-
-.userAvatar:hover .choose {
-    display: none;
-    transition: display 0.5s ease;
-}
-
-.userAvatar:hover .faCamera {
     cursor: pointer;
-    color: #0ab1ba81;
-    font-size: 20px;
-    display: block;
+   
 }
 
-
-.faCamera {
-    display: none;
+.faCamera:hover{
+    opacity: 0.8;
 }
 
 
@@ -80,7 +61,7 @@ button {
 
 /********** CARDS***************/
 
-.counterOffers{
+.counterOffers {
     text-align: start;
     padding-top: 40px;
     color: var(--blue);
@@ -91,9 +72,10 @@ button {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
     gap: 1em;
-    
-   
+
+
 }
+
 .card {
     background-color: #fff;
     border-radius: 3px;
@@ -103,7 +85,7 @@ button {
     flex-direction: column;
     align-items: center;
     height: 400px;
-  
+
 
 }
 
@@ -122,16 +104,17 @@ button {
     justify-content: space-between;
     gap: 20px;
     width: 100%;
-   
+
 }
-.card-header{
+
+.card-header {
     padding: 4px 10px;
     align-items: center;
     margin-top: 5px;
 }
 
-.card-footer{
-   padding: 7px 10px;
+.card-footer {
+    padding: 7px 10px;
 }
 
 .card-header img {
@@ -150,17 +133,17 @@ button {
     font-size: 14px;
 }
 
-.card-body{
+.card-body {
     height: 100%;
     margin-bottom: 10px;
 }
 
 .card-body img {
 
-   height: 100%;
-   width: 100%;
+    height: 100%;
+    width: 100%;
     object-fit: cover;
-    aspect-ratio: 16/9; 
+    aspect-ratio: 16/9;
 }
 
 .card-footer span {
@@ -183,32 +166,32 @@ button {
 
 
 .avatar-placeholder {
-    width: 40px; 
-    height: 40px; 
-    background-color: #ccc; 
-    border-radius: 50%; 
+    width: 40px;
+    height: 40px;
+    background-color: #ccc;
+    border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
-  }
-  
-  .avatar-letter {
-    font-size: 24px; 
-    color: #fff; 
-    text-transform: uppercase; 
-  }
+}
 
-  .image-not-available {
+.avatar-letter {
+    font-size: 24px;
+    color: #fff;
+    text-transform: uppercase;
+}
+
+.image-not-available {
     display: flex;
     align-items: center;
     justify-content: center;
     width: 100%;
     height: 100%;
     color: var(--blue);
-    font-size: 24px; 
-    font-weight: bold; 
-  }
-  
+    font-size: 24px;
+    font-weight: bold;
+}
+
 
 
 /****Loading****/
@@ -296,6 +279,114 @@ button {
 
 
 
+/**************** PROFIL ***************/
+.profil {
+    padding: 20px;
+    border-radius: 5px;
+    margin-top: 150px;
+}
+
+.profil-header {
+    text-align: center;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.profil-header h1 {
+    font-size: 24px;
+    color: #333;
+}
+
+.profil-info {
+    background-color: #fff;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.profil-info p {
+    font-size: 16px;
+    color: #444;
+    margin: 10px 0;
+}
+
+.profil-info a {
+    text-decoration: none;
+    color: #007bff;
+    font-weight: bold;
+}
+
+.profil-image {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.profil-image img {
+    height: 250px;
+    width: 200px;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+    border-radius: 5px;
+    border: 2px solid var(--blue);
+}
+
+
+
+.edit-form {
+    margin-top: 20px;
+}
+
+.edit-form input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+
+.edit-form input[type="file"] {
+    width: 100%;
+    margin-top: 10px;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: #f7f7f7;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    color: var(--blue);
+    outline: none;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+
+.edit-form input[type="file"]:hover {
+    background-color: var(--blue);
+    color: #fff;
+    box-shadow: 0 0 8px rgba(0, 234, 255, 0.5);
+}
+
+
+.edit-form button {
+    background-color: var(--blue);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+
+.edit-icon {
+    cursor: pointer;
+    color: var(--blue);
+    margin-left: 10px;
+}
 
 
 
@@ -347,7 +438,8 @@ header .container>div:nth-child(3) {
     cursor: pointer;
 }
 
-.button-signup:hover, .button-login:hover{
+.button-signup:hover,
+.button-login:hover {
     box-shadow: 5px 5px 5px -4px rgba(23, 172, 229, 0.52);
 }
 
@@ -444,18 +536,18 @@ header .container>div:nth-child(3) {
     left: 8px;
     position: absolute;
     top: 5px;
-  }
+}
 
-  .custom-switch .react-switch-handle::before {
+.custom-switch .react-switch-handle::before {
     content: "⇣";
     left: 8px;
     position: absolute;
     top: 5px;
-  }
+}
 
-  .custom-switch.checked .react-switch-handle::before {
-    content: ""; 
-  }
+.custom-switch.checked .react-switch-handle::before {
+    content: "";
+}
 
 /* ================================================================= HERO =================================================================*/
 
@@ -863,7 +955,7 @@ main article img {
 /*================================ PUBLISH =================================================================*/
 
 .publish-container {
-   
+
     padding-top: 6rem;
 }
 
@@ -1179,7 +1271,8 @@ main article img {
     .publish {
         margin: 30px;
     }
-    .container{
+
+    .container {
         margin: 0 15px;
     }
 }
@@ -1260,7 +1353,7 @@ main article img {
 
 @media (max-width: 998px) {
 
-    
+
 
     .hero {
         margin-top: 42px;
@@ -1294,11 +1387,12 @@ main article img {
         display: inline-block;
     }
 
-    .filters>div, .counterOffers {
+    .filters>div,
+    .counterOffers {
         margin: 0 30px;
     }
-    
- 
+
+
 
     .offre {
         padding: 2rem 0;
@@ -1357,9 +1451,13 @@ main article img {
     .offre {
         margin-top: 20px;
     }
+    .profil {
+    
+        margin-top: 79px;
+    }
 
     header {
-   
+
         flex-direction: column;
 
     }
@@ -1385,9 +1483,10 @@ main article img {
 
 
 @media (max-width: 480px) {
-    .rangePrice{
-        width: 50%!important;
+    .rangePrice {
+        width: 50% !important;
     }
+
     header img {
         width: 60px;
     }
@@ -1395,7 +1494,8 @@ main article img {
     .recherche input {
         width: 100%;
     }
-    .counterOffers{
+
+    .counterOffers {
         padding: 40px;
     }
 
@@ -1405,7 +1505,7 @@ main article img {
         align-items: center;
     }
 
-  
+
 
 
 }

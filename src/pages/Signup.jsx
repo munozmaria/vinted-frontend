@@ -61,10 +61,11 @@ const Signup = ({ handleToken, handleCloseModals, switchModals }) => {
           },
         });
   
-        //console.log(response.data);
+       // console.log(response.data);
   
         if (response?.data?.token) {
-          handleToken(response.data.token, response.data._id);
+          console.log("Signup - response.data.id:", response.data.id);
+          handleToken(response.data.token, response.data.id);
           navigate("/");
           handleCloseModals(true);
         }

@@ -7,9 +7,9 @@ import { toast } from "react-toastify";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faEye, faEyeSlash, faX } from "@fortawesome/free-solid-svg-icons";
+import { faEye, faEyeSlash, faX, faCheck } from "@fortawesome/free-solid-svg-icons";
 
-library.add(faEye, faEyeSlash, faX);
+library.add(faEye, faEyeSlash, faX, faCheck);
 
 const Login = ({ handleToken, handleCloseModals, switchModals }) => {
   const [email, setEmail] = useState("");
@@ -25,13 +25,30 @@ const Login = ({ handleToken, handleCloseModals, switchModals }) => {
         password,
       });
       //console.log(response.data);
-
-      handleToken(response.data.token, response.data._id);
+      console.log("Login - response.data.id:", response.data.id);
+      handleToken(response.data.token, response.data.id);
 
       if (response.data.token) {
         navigate("/");
         handleCloseModals(true);
-        toast.success(`Vous êtes connecté`);
+        toast.success(`Vous étes connecté`, {
+          position: "top-center",
+          autoClose: 1000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: false,
+          progress: undefined,
+          theme: "light",
+          style: { color: "#2baeb7" },
+          progressStyle: { backgroundColor: "#2baeb7" },
+          icon: (
+            <FontAwesomeIcon
+              icon={faCheck}
+              style={{ color: "#2baeb7", fontSize: "1.5em" }} 
+            />
+          ),
+        });
       } else {
         alert("Une erreur est survenue, veuillez réssayer.");
       }

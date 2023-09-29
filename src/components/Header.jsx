@@ -26,14 +26,15 @@ library.add(
 
 const Header = ({
   token,
+  dataId,
   handleToken,
   productDetailsSearch,
   setProductDetailsSearch,
   handleSingupButton,
   handleLoginButton,
 }) => {
+  console.log("dataId en Header:", dataId);
   const [menuOpen, setMenuOpen] = useState(false);
-
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
@@ -105,7 +106,7 @@ const Header = ({
             </div>
             {token ? (
               <div>
-                <Link to="/profile">
+                  <Link to={`/profil/${dataId}`}>
                   <button className="button-shop btn">
                     <span className="button-text">Profile</span>
                     <span className="button-icon">

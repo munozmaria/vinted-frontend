@@ -13,6 +13,7 @@ const Payment = ({ dataId, token, setLoginModal }) => {
   const location = useLocation();
   const { title } = location.state;
   const { amount } = location.state;
+  //console.log(dataId)
 
   useEffect(() => {
     if (!token) {

@@ -13,13 +13,14 @@ import Payment from "./pages/Payment";
 
 import { ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Profil from "./pages/Profil";
 
 function App() {
   const [token, setToken] = useState(Cookies.get("token") || null);
   const [rangePriceOffers, setRangePriceOffers] = useState([0, 10000]);
   const [productDetailsSearch, setProductDetailsSearch] = useState("");
   const [sortedPrice, setSortedPrice] = useState("price-asc");
-  const [dataId, setDataId] = useState("");
+  const [dataId, setDataId] = useState(Cookies.get("id") || null);
   const [signupModal, setSignupModal] = useState(false);
   const [loginModal, setLoginModal] = useState(false);
 
@@ -45,6 +46,9 @@ function App() {
       Cookies.set("id", dataId, { expires: 7 });
       setToken(token);
       setDataId(dataId);
+      console.log("dataId:", dataId);
+      
+   
     } else {
       Cookies.remove("token");
       Cookies.remove("id");
@@ -94,6 +98,7 @@ function App() {
         handleSingupButton={handleSingupButton}
         handleLoginButton={handleLoginButton}
         token={token}
+        dataId={dataId}
         handleToken={handleToken}
         productDetailsSearch={productDetailsSearch}
         setProductDetailsSearch={setProductDetailsSearch}
@@ -133,6 +138,10 @@ function App() {
               setLoginModal={setLoginModal}></Payment>
           }
         />
+        <Route path="/profil/:id"
+          element={<Profil  dataId={dataId} token={token}  />}>
+          
+        </Route>
       </Routes>
       <ToastContainer />
     </Router>
