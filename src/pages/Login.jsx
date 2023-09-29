@@ -75,11 +75,20 @@ const Login = ({ handleToken, handleCloseModals, switchModals }) => {
     }
   };
 
+  const handleEscapeKey = (event) => {
+    if (event.key === "Escape") {
+      handleCloseModals();
+    }
+  };
+
   useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener("keydown", handleEscapeKey);
+
 
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("keydown", handleEscapeKey);
     };
   }, []);
 
