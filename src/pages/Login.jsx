@@ -1,13 +1,18 @@
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 
 import { apiUrl } from "../apiConfig";
 import { toast } from "react-toastify";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faEye, faEyeSlash, faX, faCheck } from "@fortawesome/free-solid-svg-icons";
+import {
+  faEye,
+  faEyeSlash,
+  faX,
+  faCheck,
+} from "@fortawesome/free-solid-svg-icons";
 
 library.add(faEye, faEyeSlash, faX, faCheck);
 
@@ -16,6 +21,7 @@ const Login = ({ handleToken, handleCloseModals, switchModals }) => {
   const [password, setPassword] = useState("");
   const [hashPassword, setHashPassword] = useState(true);
 
+  const modalRef = useRef(null);
   const navigate = useNavigate();
 
   const fetchData = async () => {
@@ -45,7 +51,7 @@ const Login = ({ handleToken, handleCloseModals, switchModals }) => {
           icon: (
             <FontAwesomeIcon
               icon={faCheck}
-              style={{ color: "#2baeb7", fontSize: "1.5em" }} 
+              style={{ color: "#2baeb7", fontSize: "1.5em" }}
             />
           ),
         });
@@ -60,23 +66,35 @@ const Login = ({ handleToken, handleCloseModals, switchModals }) => {
 
   const handleLogin = (event) => {
     event.preventDefault();
-
     fetchData();
   };
+
+  const handleClickOutside = (event) => {
+    if (modalRef.current && !modalRef.current.contains(event.target)) {
+      handleCloseModals();
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   return (
     <>
       <div className="formulaire">
-        <i
-          className="closeModal"
-          onClick={() => {
-            //console.log("hzrzrzr")
-            handleCloseModals();
-          }}>
-          <FontAwesomeIcon icon={faX} />
-        </i>
-        <div className="formContainer">
-          <form onSubmit={handleLogin}>
+        <div ref={modalRef}  className="formContainer">
+          <form  onSubmit={handleLogin}>
+            <i
+              className="closeModal"
+              onClick={() => {
+                handleCloseModals();
+              }}>
+              <FontAwesomeIcon icon={faX} />
+            </i>
             <h1>Se connecter</h1>
 
             <input

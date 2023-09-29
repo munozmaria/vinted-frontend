@@ -832,8 +832,8 @@ main article img {
 
 .closeModal {
     position: absolute;
-    top: 6%;
-    right: 7%;
+    top: 15px;
+    right: 6%;
     cursor: pointer;
     transition: transform .2s;
     color: #2baeb7;
@@ -854,6 +854,7 @@ main article img {
     background-color: white;
     padding: 29px 70px;
     border-radius: 5px;
+    position: relative;
 
 
 }
