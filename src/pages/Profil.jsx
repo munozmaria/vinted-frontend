@@ -67,7 +67,7 @@ const Profil = ({ token }) => {
         }
       );
 
-      console.log(response);
+      //console.log(response);
       setIsEditing(false);
       setData(response.data.authenticatedUser);
       toast.success(`Votre profil a été modifié`, {
@@ -110,7 +110,6 @@ const Profil = ({ token }) => {
     <div className="profil">
       <div className="profil-header">
         <h1>
-          Profil de{" "}
           <span style={{ fontWeight: "bold", color: "#2BAEB7" }}>
             {data.account.username}
           </span>{" "}
