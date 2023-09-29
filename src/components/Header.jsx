@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { useRef, useEffect } from "react";
 import logo from "../assets/img/logo.jpg";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -33,15 +34,41 @@ const Header = ({
   handleSingupButton,
   handleLoginButton,
 }) => {
-  //console.log("dataId en Header:", dataId);
   const [menuOpen, setMenuOpen] = useState(false);
-  const toggleMenu = () => {
-    setMenuOpen(!menuOpen);
-  };
+  const modalRef = useRef(null);
 
+  const openMenu = () => {
+    setMenuOpen(true);
+  };
+  const closeMenu = () => {
+    setMenuOpen(false);
+  };
   const handleImageClick = () => {
     window.location.href = "/";
   };
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (modalRef.current && !modalRef.current.contains(event.target)) {
+        //console.log('holaa')
+        closeMenu();
+      }
+    };
+
+    const handleEscapeKey = (event) => {
+      if (event.key === "Escape") {
+        closeMenu();
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener("keydown", handleEscapeKey);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("keydown", handleEscapeKey);
+    };
+  }, []);
 
   return (
     <header>
@@ -61,11 +88,11 @@ const Header = ({
           />
         </div>
 
-        <button className="menu-button bigscreen" onClick={toggleMenu}>
+        <button className="menu-button bigscreen" onClick={openMenu}>
           <FontAwesomeIcon icon={faBars} />
         </button>
         <div className={`menu ${menuOpen ? "open" : ""}`}>
-          <div className="menuContainer">
+          <div ref={modalRef} className="menuContainer">
             {!token ? (
               <div className="buttons">
                 <button
@@ -106,7 +133,7 @@ const Header = ({
             </div>
             {token ? (
               <div>
-                  <Link to={`/profil/${dataId}`}>
+                <Link to={`/profil/${dataId}`}>
                   <button className="button-shop btn">
                     <span className="button-text">Profile</span>
                     <span className="button-icon">
