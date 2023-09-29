@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useRef, useEffect, useState } from "react";
 import logo from "../assets/img/logo.jpg";
 import { apiUrl } from "../apiConfig";
@@ -38,7 +38,7 @@ const Header = ({
   const [user, setUser] = useState(null); 
 
   const modalRef = useRef(null);
-
+  const location = useLocation();
   useEffect(() => {
 
     if (token && dataId) {
@@ -95,17 +95,19 @@ const Header = ({
       <div className="container">
         <img src={logo} alt="" onClick={handleImageClick} />
 
-        <div className="recherche">
-          <FontAwesomeIcon className="magnifyGlass" icon={faMagnifyingGlass} />
-          <input
-            type="text"
-            value={productDetailsSearch}
-            placeholder="Rechercher des articles"
-            onChange={(event) => {
-              setProductDetailsSearch(event.target.value);
-            }}
-          />
-        </div>
+        {location.pathname === "/" && (
+          <div className="recherche">
+            <FontAwesomeIcon className="magnifyGlass" icon={faMagnifyingGlass} />
+            <input
+              type="text"
+              value={productDetailsSearch}
+              placeholder="Rechercher des articles"
+              onChange={(event) => {
+                setProductDetailsSearch(event.target.value);
+              }}
+            />
+          </div>
+        )}
 
         <button className="menu-button bigscreen" onClick={openMenu}>
           <FontAwesomeIcon icon={faBars} />
