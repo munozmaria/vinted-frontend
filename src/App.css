@@ -41,12 +41,17 @@ button {
     flex-direction: column;
     padding: 8px;
     cursor: pointer;
+    transition: 0.5s ease-in-out;
    
 }
 
 .faCamera:hover{
     opacity: 0.8;
+    transform: scale(1.4)
 }
+
+ 
+
 
 
 
@@ -839,10 +844,11 @@ main article img {
     color: #2baeb7;
     font-weight: bold;
     font-size: 25px;
+    transition: 0.2s ease-in-out;
 }
 
 .closeModal:hover {
-    transform: scale(1.5)
+    transform: scale(1.4)
 }
 
 .formContainer {
