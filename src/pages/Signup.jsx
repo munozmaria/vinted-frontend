@@ -160,7 +160,7 @@ const Signup = ({ handleToken, handleCloseModals, switchModals }) => {
             />
             <FontAwesomeIcon
               className="eyeIcon"
-              icon={hashPassword ? "eye" : "eye-slash"}
+              icon={hashPassword ? "eye-slash" : "eye"}
               onClick={() => {
                 setHashPassword(!hashPassword);
               }}
@@ -181,7 +181,7 @@ const Signup = ({ handleToken, handleCloseModals, switchModals }) => {
             />
             <FontAwesomeIcon
               className="eyeIcon"
-              icon={confirmHashPassword ? "eye" : "eye-slash"}
+              icon={confirmHashPassword ? "eye-slash" : "eye"}
               onClick={() => {
                 setConfirmHashPassword(!confirmHashPassword);
               }}

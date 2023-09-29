@@ -103,7 +103,7 @@ const Login = ({ handleToken, handleCloseModals, switchModals }) => {
               />
               <FontAwesomeIcon
                 className="eyeIcon"
-                icon={hashPassword ? "eye" : "eye-slash"}
+                icon={hashPassword ? "eye-slash" : "eye"}
                 onClick={() => {
                   setHashPassword(!hashPassword);
                 }}

@@ -33,7 +33,7 @@ const Header = ({
   handleSingupButton,
   handleLoginButton,
 }) => {
-  console.log("dataId en Header:", dataId);
+  //console.log("dataId en Header:", dataId);
   const [menuOpen, setMenuOpen] = useState(false);
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
