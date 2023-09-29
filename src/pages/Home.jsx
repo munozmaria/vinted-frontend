@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Hero from "../components/Hero";
 import { apiUrl } from "../apiConfig";
 import { useEffect } from "react";
@@ -22,21 +22,23 @@ const Home = ({
 }) => {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-
+  const navigate = useNavigate();
   const location = useLocation();
-  const currentPath = location.pathname;
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(
-          `${apiUrl}/offers?priceMin=${rangePriceOffers[0]}&priceMax=${
-            rangePriceOffers[1]
-          }&sort=${
-            !sortedPrice ? "price-desc" : "price-asc"
-          }&productDetailsSearch=${productDetailsSearch}`
-        );
-        //console.log(response);
+        if (productDetailsSearch) {
+          const queryParams = new URLSearchParams();
+          queryParams.set("productDetailsSearch", productDetailsSearch);
+
+          navigate({ search: `?${queryParams.toString()}` });
+        } else {
+          navigate({ search: "" });
+        }
+
+        // Realizar la solicitud con los filtros
+        const response = await axios.get(`${apiUrl}/offers${location.search}`);
         setData(response.data);
 
         setIsLoading(false);
@@ -45,7 +47,7 @@ const Home = ({
       }
     };
     fetchData();
-  }, [rangePriceOffers, sortedPrice, productDetailsSearch]);
+  }, [productDetailsSearch, location.pathname]);
 
   return isLoading ? (
     <div className="containerLoading">
@@ -64,7 +66,7 @@ const Home = ({
           disponibles <FontAwesomeIcon icon={faStar} className="fa-beat" />
         </span>
         <div className="filters">
-          {currentPath === "/" && (
+          {location.pathname === "/" && (
             <div>
               <SwitchPrice
                 setSortedPrice={setSortedPrice}
@@ -76,7 +78,6 @@ const Home = ({
         <div className="cardContainerMain">
           {data.offers &&
             data.offers.map((offer) => {
-             // console.log(offer);
               return (
                 <Link key={offer._id} to={`/offer/${offer._id}`}>
                   <div className="card">
@@ -90,8 +91,7 @@ const Home = ({
                           />
                         ) : (
                           <div className="image-not-available">
-                              {offer.owner.account.username.charAt(0)}
-                           
+                            {offer.owner.account.username.charAt(0)}
                           </div>
                         )}
                         <span>{offer.owner.account.username}</span>
