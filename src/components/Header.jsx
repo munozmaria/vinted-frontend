@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useRef, useEffect } from "react";
 import logo from "../assets/img/logo.jpg";
-
+import { apiUrl } from "../apiConfig";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
@@ -14,6 +14,7 @@ import {
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
+import axios from "axios";
 
 library.add(
   faEye,
@@ -35,7 +36,33 @@ const Header = ({
   handleLoginButton,
 }) => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const[user, setUser] = useState([])
+  const [isLoading, setIsLoading] = useState(true);
   const modalRef = useRef(null);
+
+  //console.log(dataId)
+
+
+  useEffect(() => {
+    const fetchData = async () => {
+      if (dataId !== undefined) {
+        try {
+          const response = await axios.get(`${apiUrl}/user/${dataId}`, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+          console.log(response);
+          setUser(response.data);
+          setIsLoading(false);
+        } catch (err) {
+          console.log(err.message);
+        }
+      }
+    };
+    fetchData();
+  }, [dataId, token]);
+
 
   const openMenu = () => {
     setMenuOpen(true);
@@ -70,7 +97,13 @@ const Header = ({
     };
   }, []);
 
-  return (
+  return isLoading? (<div className="containerLoading">
+  <div className="spinner-square">
+    <div className="square-1 square"></div>
+    <div className="square-2 square"></div>
+    <div className="square-3 square"></div>
+  </div>
+</div>): (
     <header>
       <div className="container">
         <img src={logo} alt="" onClick={handleImageClick} />
@@ -135,7 +168,7 @@ const Header = ({
               <div>
                 <Link to={`/profil/${dataId}`}>
                   <button className="button-shop btn">
-                    <span className="button-text">Profile</span>
+                    <span className="button-text">{user.account.username}</span>
                     <span className="button-icon">
                       <FontAwesomeIcon icon={faUser} />
                     </span>
