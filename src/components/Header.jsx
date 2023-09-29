@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import logo from "../assets/img/logo.jpg";
 import { apiUrl } from "../apiConfig";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -13,7 +13,6 @@ import {
   faBars,
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
-import { useState } from "react";
 import axios from "axios";
 
 library.add(
@@ -36,33 +35,28 @@ const Header = ({
   handleLoginButton,
 }) => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const[user, setUser] = useState([])
-  const [isLoading, setIsLoading] = useState(true);
+  const [user, setUser] = useState(null); 
+
   const modalRef = useRef(null);
 
-  //console.log(dataId)
-
-
   useEffect(() => {
-    const fetchData = async () => {
-      if (dataId !== undefined) {
+
+    if (token && dataId) {
+      const fetchData = async () => {
         try {
           const response = await axios.get(`${apiUrl}/user/${dataId}`, {
             headers: {
               Authorization: `Bearer ${token}`,
             },
           });
-          console.log(response);
           setUser(response.data);
-          setIsLoading(false);
         } catch (err) {
           console.log(err.message);
         }
-      }
-    };
-    fetchData();
-  }, [dataId, token]);
-
+      };
+      fetchData();
+    }
+  }, [token, dataId]);
 
   const openMenu = () => {
     setMenuOpen(true);
@@ -77,7 +71,6 @@ const Header = ({
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (modalRef.current && !modalRef.current.contains(event.target)) {
-        //console.log('holaa')
         closeMenu();
       }
     };
@@ -97,13 +90,7 @@ const Header = ({
     };
   }, []);
 
-  return isLoading? (<div className="containerLoading">
-  <div className="spinner-square">
-    <div className="square-1 square"></div>
-    <div className="square-2 square"></div>
-    <div className="square-3 square"></div>
-  </div>
-</div>): (
+  return (
     <header>
       <div className="container">
         <img src={logo} alt="" onClick={handleImageClick} />
@@ -115,7 +102,6 @@ const Header = ({
             value={productDetailsSearch}
             placeholder="Rechercher des articles"
             onChange={(event) => {
-              //console.log(event.target.value)
               setProductDetailsSearch(event.target.value);
             }}
           />
@@ -130,7 +116,8 @@ const Header = ({
               <div className="buttons">
                 <button
                   onClick={handleSingupButton}
-                  className="button-signup btn">
+                  className="button-signup btn"
+                >
                   S'inscrire
                 </button>
                 <button onClick={handleLoginButton} className="button-login">
@@ -144,7 +131,8 @@ const Header = ({
                     className="button-logout btn"
                     onClick={() => {
                       handleToken(null, null);
-                    }}>
+                    }}
+                  >
                     <span className="button-text">Se déconnecter</span>
                     <span className="button-icon">
                       <FontAwesomeIcon icon={faRightFromBracket} />
@@ -168,7 +156,9 @@ const Header = ({
               <div>
                 <Link to={`/profil/${dataId}`}>
                   <button className="button-shop btn">
-                    <span className="button-text">{user.account.username}</span>
+                    <span className="button-text">
+                      {user && user.account && user.account.username}
+                    </span>
                     <span className="button-icon">
                       <FontAwesomeIcon icon={faUser} />
                     </span>
