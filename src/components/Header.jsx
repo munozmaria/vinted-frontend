@@ -58,8 +58,10 @@ const Header = ({
     }
   }, [token, dataId]);
 
-  const openMenu = () => {
-    setMenuOpen(true);
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+    //console.log('abierto')
+    console.log(menuOpen)
   };
   const closeMenu = () => {
     setMenuOpen(false);
@@ -68,27 +70,35 @@ const Header = ({
     window.location.href = "/";
   };
 
+
+
+  const handleClickOutside = (event) => {
+    if (modalRef.current && !modalRef.current.contains(event.target)) {
+      if (!event.target.closest('.menu-button')) {
+        closeMenu();
+      }
+    }
+  };
+
+
+  const handleEscapeKey = (event) => {
+    if (event.key === "Escape") {
+      closeMenu();
+    }
+  };
+
   useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (modalRef.current && !modalRef.current.contains(event.target)) {
-        closeMenu();
-      }
-    };
-
-    const handleEscapeKey = (event) => {
-      if (event.key === "Escape") {
-        closeMenu();
-      }
-    };
-
     document.addEventListener("mousedown", handleClickOutside);
     document.addEventListener("keydown", handleEscapeKey);
+
 
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
       document.removeEventListener("keydown", handleEscapeKey);
     };
   }, []);
+
+
 
   return (
     <header>
@@ -109,11 +119,11 @@ const Header = ({
           </div>
         )}
 
-        <button className="menu-button bigscreen" onClick={openMenu}>
+        <button className="menu-button bigscreen" onClick={toggleMenu}>
           <FontAwesomeIcon icon={faBars} />
         </button>
-        <div className={`menu ${menuOpen ? "open" : ""}`}>
-          <div ref={modalRef} className="menuContainer">
+        <div ref={modalRef}  className={`menu ${menuOpen ? "open" : ""}`}>
+          <div className="menuContainer">
             {!token ? (
               <div className="buttons">
                 <button
