@@ -30,15 +30,14 @@ const Home = ({
     const fetchData = async () => {
       try {
         const queryParams = new URLSearchParams();
-        if (Array.isArray(rangePriceOffers) && rangePriceOffers.length === 2) {
+        if (
+          Array.isArray(rangePriceOffers) &&
+          rangePriceOffers.length === 2 &&
+          rangePriceOffers[0] !== rangePriceOffers[1]
+        ) {
           queryParams.set("priceMin", rangePriceOffers[0]);
           queryParams.set("priceMax", rangePriceOffers[1]);
         }
-        if (productDetailsSearch) {
-          queryParams.set("productDetailsSearch", productDetailsSearch);
-          
-         
-        } 
         navigate({ search: `?${queryParams.toString()}` });
         
         const response = await axios.get(`${apiUrl}/offers${location.search}`);
@@ -123,7 +122,7 @@ const Home = ({
                     </div>
                     <div className="card-footer">
                       <span style={{ fontWeight: "bold", paddingTop: "30px" }}>
-                        {offer.product_price}€
+                      {parseFloat(offer.product_price).toFixed(2)}€
                       </span>
                       <div
                         style={{

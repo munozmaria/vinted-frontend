@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Range } from "react-range";
 
 const RangeRate = ({ setRangePriceOffers }) => {
-  const [valuesRange, setValuesRange] = useState([0, 100]);
+  const [valuesRange, setValuesRange] = useState([10, 100]);
 
   return (
     <Range
