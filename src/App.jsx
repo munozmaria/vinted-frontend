@@ -17,7 +17,7 @@ import Profil from "./pages/Profil";
 
 function App() {
   const [token, setToken] = useState(Cookies.get("token") || null);
-  const [rangePriceOffers, setRangePriceOffers] = useState([0, 10000]);
+  const [rangePriceOffers, setRangePriceOffers] = useState([0, 100]);
   const [productDetailsSearch, setProductDetailsSearch] = useState("");
   const [sortedPrice, setSortedPrice] = useState("price-asc");
   const [dataId, setDataId] = useState(Cookies.get("id") || null);

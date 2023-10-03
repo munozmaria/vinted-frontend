@@ -2,12 +2,15 @@ import React, { useState } from "react";
 import Switch from "react-switch";
 
 const SwitchPrice = ({ sortedPrice, setSortedPrice }) => {
-  const [checked, setChecked] = useState(false);
+  const [checked, setChecked] = useState(sortedPrice === "price-desc");
 
   const handleChange = () => {
+    const newSortedPrice = checked ? "price-asc" : "price-desc";
     setChecked(!checked);
-    setSortedPrice(!sortedPrice);
+    setSortedPrice(newSortedPrice);
   };
+
+
 
   return (
     <label>
@@ -17,8 +20,6 @@ const SwitchPrice = ({ sortedPrice, setSortedPrice }) => {
         checked={checked}
         className={`custom-switch ${checked ? "checked" : ""}`}
       />
-
-
     </label>
   );
 };

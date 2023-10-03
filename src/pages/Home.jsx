@@ -24,22 +24,33 @@ const Home = ({
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
   const location = useLocation();
+  //console.log(sortedPrice)
 
   useEffect(() => {
     const fetchData = async () => {
       try {
+        const queryParams = new URLSearchParams();
+        if (Array.isArray(rangePriceOffers) && rangePriceOffers.length === 2) {
+          queryParams.set("priceMin", rangePriceOffers[0]);
+          queryParams.set("priceMax", rangePriceOffers[1]);
+        }
         if (productDetailsSearch) {
-          const queryParams = new URLSearchParams();
           queryParams.set("productDetailsSearch", productDetailsSearch);
-
-          navigate({ search: `?${queryParams.toString()}` });
-        } else {
-          navigate({ search: "" });
+          
+         
+        } 
+        navigate({ search: `?${queryParams.toString()}` });
+        
+        const response = await axios.get(`${apiUrl}/offers${location.search}`);
+        
+        let sortedOffers = [...response.data.offers];
+        if (sortedPrice === "price-asc") {
+          sortedOffers.sort((a, b) => a.product_price - b.product_price);
+        } else if (sortedPrice === "price-desc") {
+          sortedOffers.sort((a, b) => b.product_price - a.product_price);
         }
 
-        // Realizar la solicitud con los filtros
-        const response = await axios.get(`${apiUrl}/offers${location.search}`);
-        setData(response.data);
+        setData({ ...response.data, offers: sortedOffers });
 
         setIsLoading(false);
       } catch (error) {
@@ -47,7 +58,7 @@ const Home = ({
       }
     };
     fetchData();
-  }, [productDetailsSearch, location.pathname]);
+  }, [productDetailsSearch, location.pathname, sortedPrice, rangePriceOffers]);
 
   return isLoading ? (
     <div className="containerLoading">
@@ -71,7 +82,7 @@ const Home = ({
               <SwitchPrice
                 setSortedPrice={setSortedPrice}
                 sortedPrice={sortedPrice}></SwitchPrice>
-              <RangeRate setRangePriceOffers={setRangePriceOffers}></RangeRate>
+              <RangeRate setRangePriceOffers={setRangePriceOffers} ></RangeRate>
             </div>
           )}
         </div>

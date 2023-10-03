@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Range } from "react-range";
 
 const RangeRate = ({ setRangePriceOffers }) => {
-  const [valuesRange, setValuesRange] = useState([10, 100]);
+  const [valuesRange, setValuesRange] = useState([0, 100]);
 
   return (
     <Range
@@ -10,9 +10,9 @@ const RangeRate = ({ setRangePriceOffers }) => {
       min={0}
       max={500}
       values={valuesRange}
-      onChange={(values) => {
-        setValuesRange(values);
-        setRangePriceOffers(values);
+      onChange={(newValues) => {
+        setValuesRange(newValues);
+        setRangePriceOffers(newValues); 
       }}
       renderTrack={({ props, children }) => {
         // console.log(children);
