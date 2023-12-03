@@ -30,7 +30,7 @@ const Offer = () => {
     <article>
       <div>
         {data.product_image && (
-          <img src={data.product_image.secure_url} alt={data.product_name} />
+          <img src={data.product_image[0].secure_url} alt={data.product_name} />
         )}
       </div>
       <div className="offre-details">

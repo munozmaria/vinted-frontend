@@ -41,6 +41,7 @@ const Home = ({
         navigate({ search: `?${queryParams.toString()}` });
         
         const response = await axios.get(`${apiUrl}/offers${location.search}`);
+        console.log(response.data)
         
         let sortedOffers = [...response.data.offers];
         if (sortedPrice === "price-asc") {
@@ -111,7 +112,7 @@ const Home = ({
                     <div className="card-body">
                       {offer.product_image ? (
                         <img
-                          src={offer.product_image.secure_url}
+                          src={offer.product_image[0].secure_url}
                           alt={offer.product_name}
                         />
                       ) : (
